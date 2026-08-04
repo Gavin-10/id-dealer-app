@@ -65,5 +65,9 @@
 	},
 	"keywords": [
 		"svelte"
-	]
+	],
+	"dependencies": {
+		"@lucide/svelte": "^1.28.0",
+		"bits-ui": "^2.18.1"
+	}
 }
