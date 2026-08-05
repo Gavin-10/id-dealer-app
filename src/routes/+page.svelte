@@ -1,3 +1,12 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+
+<img src="/led_display.jpg" alt="Sample Display" />
+
+
+<style>
+    img {
+        width: 100%;
+        height: 550px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+</style>

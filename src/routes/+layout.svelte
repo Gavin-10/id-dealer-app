@@ -1,6 +1,8 @@
 <script lang="ts">
 	import './layout.css';
 
+    import { asset, resolve } from "$app/paths";
+
     import { NavigationMenu } from "bits-ui";
     import { ChevronDown } from '@lucide/svelte';
 
@@ -12,8 +14,8 @@
     const accessories = [
         { title: "All Accessories", href: "/accessories" },
     ];
-    const pannels = [
-        { title: "All Pannels", href: "/pannels" },
+    const panels = [
+        { title: "All Panels", href: "/pannels" },
         { title: "Indoor", href: "/pannels" },
         { title: "Outdoor", href: "/pannels" },
         { title: "Commercial", href: "/pannels" },
@@ -22,65 +24,59 @@
         { title: "House of Worship", href: "/pannels" },
         { title: "Residential", href: "/pannels" },
         { title: "Visitor Experience", href: "/pannels" },
-        { title: "Virtual Production/Cineam", href: "/pannels" }
+        { title: "Virtual Production/Cinema", href: "/pannels" }
     ];
+
+    //styles
+    const navButtons = "relative flex mx-3 p-3 rounded-md hover:cursor-pointer backdrop-hue-rotate-330 backdrop-blur-md";
+    const navTrigger = "relative flex mx-3 p-3 hover:cursor-pointer";
 </script>
 
-<div class="w-full h-[66px] px-4 text-white flex justify-between">
-    <img class="logo" src="/logo_clear.png" alt="Imagine Display Logo" />
+{#snippet content(items: { title: string, href: string, }[])}
+    <NavigationMenu.Content class="absolute top-16 w-full sm:w-auto">
+        <ul class="rounded-md border border-[#282931] backdrop-blur-md p-3 backdrop-brightness-50 min-w-3xs">
+            {#each items as item (item.title)}
+                <li class="py-3">
+                    <NavigationMenu.Link href={item.href}>{item.title}</NavigationMenu.Link>
+                </li>
+            {/each}
+        </ul>
+    </NavigationMenu.Content>
+{/snippet}
+
+<div class="w-full h-[66px] px-4 text-white flex justify-between items-center absolute z-10 top-0 left-0">
+    <a href={resolve("/")} class="logo">
+        <img class="logo" src={asset("/logo_clear.png")} alt="Imagine Display Logo" />
+    </a>
 
     <NavigationMenu.Root>
-        <NavigationMenu.List class="flex justify-between my-1">
+        <NavigationMenu.List class="flex justify-between h-full">
             <NavigationMenu.Item value="Solutions">
-                <NavigationMenu.Trigger class="flex mx-3 p-3 rounded-md hover:bg-[#282931]">
+                <NavigationMenu.Trigger class={navTrigger}>
                     Solutions
                     <ChevronDown />
                 </NavigationMenu.Trigger>
-                <NavigationMenu.Content>
-                    <ul>
-                        {#each solutions as solution (solution.title)}
-                            <li>
-                                <NavigationMenu.Link href={solution.href}>{solution.title}</NavigationMenu.Link>
-                            </li>
-                        {/each}
-                    </ul>
-                </NavigationMenu.Content>
+                {@render content(solutions)}
             </NavigationMenu.Item>
             <NavigationMenu.Item value="Pannes">
-                <NavigationMenu.Trigger class="relative flex mx-3 p-3 rounded-md hover:bg-[#282931]">
+                <NavigationMenu.Trigger class={navTrigger}>
                     Panels
                     <ChevronDown />
                 </NavigationMenu.Trigger>
-                <NavigationMenu.Content class="absolute top-15 w-full sm:w-auto">
-                    <ul>
-                        {#each pannels as pannel (pannel.title)}
-                            <li>
-                                <NavigationMenu.Link href={pannel.href}>{pannel.title}</NavigationMenu.Link>
-                            </li>
-                        {/each}
-                    </ul>
-                </NavigationMenu.Content>
+                {@render content(panels)}
             </NavigationMenu.Item>
             <NavigationMenu.Item value="accessories">
-                <NavigationMenu.Trigger class="flex mx-3 p-3">
+                <NavigationMenu.Trigger class={navTrigger}>
                     Accessories
                     <ChevronDown />
                 </NavigationMenu.Trigger>
-                <NavigationMenu.Content>
-                    <ul>
-                        {#each accessories as accessory (accessory.title)}
-                            <li>
-                                <NavigationMenu.Link href={accessory.href}>{accessory.title}</NavigationMenu.Link>
-                            </li>
-                        {/each}
-                    </ul>
-                </NavigationMenu.Content>
+                {@render content(accessories)}
             </NavigationMenu.Item>
 
-            <NavigationMenu.Item class="ml-5 mr-3 p-3">
+            <NavigationMenu.Item class={navButtons + " ml-5"}>
                 <NavigationMenu.Link href="/orders">Orders</NavigationMenu.Link>
             </NavigationMenu.Item>
-            <NavigationMenu.Item class="mx-3 p-3">
+            <NavigationMenu.Item class={navButtons}>
                 <NavigationMenu.Link href="/contact-us">Contact Us</NavigationMenu.Link>
             </NavigationMenu.Item>
         </NavigationMenu.List>
