@@ -34,7 +34,7 @@
 
 {#snippet content(items: { title: string, href: string, }[])}
     <NavigationMenu.Content class="absolute top-16 w-full sm:w-auto">
-        <ul class="rounded-md border border-[#282931] backdrop-blur-md p-3 backdrop-brightness-50 min-w-3xs">
+        <ul class="rounded-md border border-[#282931] backdrop-blur-md p-3 backdrop-brightness-50 min-w-3xs shadow-2xs shadow-white/25">
             {#each items as item (item.title)}
                 <li class="py-3">
                     <NavigationMenu.Link href={item.href}>{item.title}</NavigationMenu.Link>
@@ -44,7 +44,7 @@
     </NavigationMenu.Content>
 {/snippet}
 
-<div class="w-full h-[66px] px-4 text-white flex justify-between items-center absolute z-10 top-0 left-0">
+<div class="w-full h-[66px] px-4 flex justify-between items-center absolute z-10 top-0 left-0">
     <a href={resolve("/")} class="logo">
         <img class="logo" src={asset("/logo_clear.png")} alt="Imagine Display Logo" />
     </a>
