@@ -15,28 +15,28 @@
         { title: "All Accessories", href: "/accessories" },
     ];
     const panels = [
-        { title: "All Panels", href: "/pannels" },
-        { title: "Indoor", href: "/pannels" },
-        { title: "Outdoor", href: "/pannels" },
-        { title: "Commercial", href: "/pannels" },
-        { title: "Education", href: "/pannels" },
-        { title: "Government", href: "/pannels" },
-        { title: "House of Worship", href: "/pannels" },
-        { title: "Residential", href: "/pannels" },
-        { title: "Visitor Experience", href: "/pannels" },
-        { title: "Virtual Production/Cinema", href: "/pannels" }
+        { title: "All Panels", href: "/panels" },
+        { title: "Indoor", href: "/panels" },
+        { title: "Outdoor", href: "/panels" },
+        { title: "Commercial", href: "/panels" },
+        { title: "Education", href: "/panels" },
+        { title: "Government", href: "/panels" },
+        { title: "House of Worship", href: "/panels" },
+        { title: "Residential", href: "/panels" },
+        { title: "Visitor Experience", href: "/panels" },
+        { title: "Virtual Production/Cinema", href: "/panels" }
     ];
 
     //styles
-    const navButtons = "relative flex mx-3 p-3 rounded-md hover:cursor-pointer backdrop-hue-rotate-330 backdrop-blur-md";
+    const navButtons = "relative flex mx-3 p-3 rounded-md hover:cursor-pointer transition duration-300 ease-in-out hover:scale-105 backdrop-blur-md";
     const navTrigger = "relative flex mx-3 p-3 hover:cursor-pointer";
 </script>
 
 {#snippet content(items: { title: string, href: string, }[])}
     <NavigationMenu.Content class="absolute top-16 w-full sm:w-auto">
-        <ul class="rounded-md border border-[#282931] backdrop-blur-md p-3 backdrop-brightness-50 min-w-3xs shadow-2xs shadow-white/25">
+        <ul class="rounded-md border border-[#282931] py-3 bg-black/75 min-w-3xs shadow-2xs shadow-white/25">
             {#each items as item (item.title)}
-                <li class="py-3">
+                <li class="p-3 transition duration-200 ease-in hover:bg-black/50">
                     <NavigationMenu.Link href={item.href}>{item.title}</NavigationMenu.Link>
                 </li>
             {/each}
