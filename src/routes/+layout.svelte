@@ -44,8 +44,8 @@
     </NavigationMenu.Content>
 {/snippet}
 
-<div class="w-full h-[66px] px-4 flex justify-between items-center absolute z-10 top-0 left-0">
-    <a href={resolve("/")} class="logo">
+<div class="w-full h-[80px] px-4 py-3 flex justify-between items-center absolute z-10 top-0 left-0">
+    <a href={resolve("/")} class="logo rounded-md backdrop-blur-md">
         <img class="logo" src={asset("/logo_clear.png")} alt="Imagine Display Logo" />
     </a>
 
