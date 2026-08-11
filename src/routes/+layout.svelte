@@ -5,6 +5,7 @@
 
     import { NavigationMenu } from "bits-ui";
     import { ChevronDown } from '@lucide/svelte';
+    import {darkRoundedGlass, roundedGlass, transitionSizeLarge} from "$lib/styles/styles.ts";
 
     const { children } = $props();
 
@@ -28,13 +29,13 @@
     ];
 
     //styles
-    const navButtons = "relative flex mx-3 p-3 rounded-md hover:cursor-pointer transition duration-300 ease-in-out hover:scale-105 backdrop-blur-md";
+    const navButtons = "relative flex mx-3 p-3 rounded-md hover:cursor-pointer transition duration-300 ease-in-out hover:scale-110 backdrop-blur-md";
     const navTrigger = "relative flex mx-3 p-3 hover:cursor-pointer";
 </script>
 
 {#snippet content(items: { title: string, href: string, }[])}
     <NavigationMenu.Content class="absolute top-16 w-full sm:w-auto">
-        <ul class="rounded-md border border-[#282931] py-3 bg-black/75 min-w-3xs shadow-2xs shadow-white/25">
+        <ul class="rounded-md {darkRoundedGlass} py-3 min-w-3xs">
             {#each items as item (item.title)}
                 <li class="p-3 transition duration-200 ease-in hover:bg-black/50">
                     <NavigationMenu.Link href={item.href}>{item.title}</NavigationMenu.Link>
@@ -45,7 +46,7 @@
 {/snippet}
 
 <div class="w-full h-[80px] px-4 py-3 flex justify-between items-center absolute z-10 top-0 left-0">
-    <a href={resolve("/")} class="logo rounded-md backdrop-blur-md">
+    <a href={resolve("/")} class="logo rounded-md backdrop-blur-md {transitionSizeLarge}">
         <img class="logo" src={asset("/logo_clear.png")} alt="Imagine Display Logo" />
     </a>
 
@@ -84,6 +85,10 @@
 </div>
 
 {@render children()}
+
+<div class="mt-7 p-10">
+    <p class="text-center">&copy Copyright Imagine Displays. All rights reserved.</p>
+</div>
 
 <style>
     .logo {
