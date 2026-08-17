@@ -13,3 +13,6 @@ export const roundedGlassButton = `${roundedGlass} ${transitionSizeLarge} hover:
 export const smallTitle = 'font-normal text-4xl';
 export const medTitle = 'text-center text-6xl font-semibold';
 export const largeTitle = 'text-center text-9xl font-semibold';
+
+export const glassMenu = `rounded-md ${darkRoundedGlass} py-3 min-w-3xs`;
+export const glassMenuItem = `p-3 transition duration-200 ease-in hover:bg-black/50 hover:cursor-pointer`;

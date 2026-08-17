@@ -5,7 +5,7 @@
 
     import { NavigationMenu } from "bits-ui";
     import { ChevronDown } from '@lucide/svelte';
-    import {darkRoundedGlass, roundedGlass, transitionSizeLarge} from "$lib/styles/styles.ts";
+    import {darkRoundedGlass, glassMenu, glassMenuItem, transitionSizeLarge} from "$lib/styles/styles.ts";
 
     const { children } = $props();
 
@@ -35,9 +35,9 @@
 
 {#snippet content(items: { title: string, href: string, }[])}
     <NavigationMenu.Content class="absolute top-16 w-full sm:w-auto">
-        <ul class="rounded-md {darkRoundedGlass} py-3 min-w-3xs">
+        <ul class="{glassMenu}">
             {#each items as item (item.title)}
-                <li class="p-3 transition duration-200 ease-in hover:bg-black/50">
+                <li class="{glassMenuItem}">
                     <NavigationMenu.Link href={item.href}>{item.title}</NavigationMenu.Link>
                 </li>
             {/each}

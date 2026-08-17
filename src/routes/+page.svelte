@@ -125,6 +125,6 @@
     }
 
     .gradient {
-        background: linear-gradient(to bottom right, #f22248, #1d8ff2);
+        background: linear-gradient(to bottom right, var(--site-red), var(--site-blue));
     }
 </style>
