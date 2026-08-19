@@ -64,7 +64,7 @@
         <div class="w-full md:w-100 mr-3">
             <Label.Root for="application" class="m-0 p-0 text-sm font-medium">Application</Label.Root>
             <Select.Root type="single" bind:value={selectedMarket} onValueChange={v => selectedMarket = v}>
-                <Select.Trigger class="w-full h-[50px] flex justify-between items-center px-3 border border-gray-500 rounded-md transition-colors duration-300 ease-in-out focus:border-(--site-red)">
+                <Select.Trigger class="w-full h-[50px] flex justify-between items-center px-3 border border-gray-500 rounded-md hover:cursor-pointer transition-colors duration-300 ease-in-out focus:border-(--site-red)">
                     <Select.Value placeholder="All Groups" />
                     <ChevronDown />
                 </Select.Trigger>
@@ -88,7 +88,7 @@
         <div class="w-full md:w-100 mr-3">
             <Label.Root for="group" class="m-0 p-0 text-sm font-medium">Group</Label.Root>
             <Select.Root type="single" bind:value={selectedGroup} onValueChange={v => selectedGroup = v}>
-                <Select.Trigger class="w-full h-[50px] flex justify-between items-center px-3 border border-gray-500 rounded-md transition-colors duration-300 ease-in-out focus:border-(--site-red)">
+                <Select.Trigger class="w-full h-[50px] flex justify-between items-center px-3 border border-gray-500 rounded-md hover:cursor-pointer transition-colors duration-300 ease-in-out focus:border-(--site-red)">
                     <Select.Value placeholder="All Groups" />
                     <ChevronDown />
                 </Select.Trigger>
@@ -116,7 +116,7 @@
     <div class="mt-5 flex flex-wrap justify-between">
         {#each titles as title, index (title)}
             <div class="w-full md:w-1/2 lg:w-1/3 mb-3 {getClasses(index)}">
-                <Card title={title} subtitle="Subtitle" src="/test_gradient.jpg" alt="test">
+                <Card title={title} subtitle="Subtitle" src="/test_gradient.jpg" alt="test" to="/panels/{title}">
                     <p>Some Paragraphs</p>
                 </Card>
             </div>
