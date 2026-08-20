@@ -12,11 +12,6 @@
     import { ChevronRight } from "@lucide/svelte";
 </script>
 
-<div>
-    <img class="stage" src="/led_display.jpg" alt="Sample Display" />
-    <h1 class="{largeTitle} title-adjust">Welcome</h1>
-</div>
-
 {#snippet simple_data(title: string, text: string, has_div: boolean)}
     <div class="flex justify-between items-center">
         <p>{title}:</p>
@@ -31,16 +26,19 @@
     <div class="flex flex-col items-stretch justify-between mt-5 {reverse ? 'md:flex-row-reverse' : 'md:flex-row' }">
         <img class="rounded-md w-full {reverse ? 'md:ml-2' : 'md:mr-2' }" src="{src}" alt="{alt}" />
 
-        <div class="w-full {reverse ? 'md:mr-2' : 'md:ml-2' } relative mt-3 md:mt-0">
+        <div class="w-full {reverse ? 'md:mr-2' : 'md:ml-2' } relative mt-3 md:mt-0 backdrop-blur-lg">
             <h3 class="{smallTitle} {reverse ? 'text-start' : 'md:text-end' }">{title}</h3>
             <hr class="my-3"/>
-            <p class="text-lg">{text}</p>
+            <p class="text-lg mb-0 md:mb-15">{text}</p>
             <a href={href} class="{roundedGlassButton} md:absolute bottom-0 {reverse ? 'left-0' : 'right-0' } flex justify-center">{button} <ChevronRight /></a>
         </div>
     </div>
 {/snippet}
 
-<div class="m-auto md:w-3/5 sm:w-full p-3">
+<img class="stage fixed top-0" src="/led_display.jpg" alt="Sample Display" />
+<div class="m-auto md:w-3/5 sm:w-full p-3 relative mt-[550px]">
+    <h1 class="{largeTitle} title-adjust">Welcome</h1>
+
     <h2 class="{medTitle}">Your Profile</h2>
     <div class="flex flex-col md:flex-row items-stretch justify-between mt-3">
         <div class="w-full p-3 gradient rounded-md mr-0 md:mr-3">
@@ -63,15 +61,15 @@
         </div>
 
         <div class="w-full h-auto ml-0 sm:ml-3 mt-3 md:mt-0 flex flex-col justify-between">
-            <a href={resolve("/orders")} class="h-full rounded-md bg-white/15 mb-3 flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
+            <a href={resolve("/orders")} class="h-full rounded-md bg-gray-500/50 backdrop-blur-md mb-3 flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Manage Orders
                 <Package size="64"/>
             </a>
-            <a href={resolve("/contact-us")} class="h-full rounded-md bg-white/15 flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
+            <a href={resolve("/contact-us")} class="h-full rounded-md bg-gray-500/50 backdrop-blur-md flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Contact Us
                 <Headset size="64" />
             </a>
-            <button class="h-full rounded-md bg-white/15 mt-3 flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
+            <button class="h-full rounded-md bg-gray-500/50 backdrop-blur-md mt-3 flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Edit Information
                 <Pencil size="64"/>
             </button>

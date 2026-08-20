@@ -4,9 +4,12 @@
     import Card from "$lib/components/Card.svelte";
     import { Label, Select } from "bits-ui";
     import { ChevronDown } from "@lucide/svelte";
+    import {onMount} from "svelte";
 
-    let selectedGroup = $state("All Groups");
-    let selectedMarket = $state("All Markets");
+    let { data } = $props();
+
+    let selectedGroup = $derived(data.search.group);
+    let selectedMarket = $derived(data.search.market);
     let searchVal = $state("");
 
     const groups = ["All Groups", "Indoor", "Outdoor"];
@@ -32,7 +35,7 @@
     }
 
     const getClasses = (index: number) => {
-        let res = "";
+        let res;
 
         if ((index + 1) % 3 === 2) {
             res = "lg:px-1.5";
@@ -50,6 +53,8 @@
 
         return res;
     }
+
+    onMount(() => search());
 </script>
 
 <div class="md:w-3/5 sm:w-full m-auto p-3 mt-[80px]">
