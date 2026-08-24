@@ -16,3 +16,9 @@ export const largeTitle = 'text-center text-9xl font-semibold';
 
 export const glassMenu = `rounded-md ${darkRoundedGlass} py-3 min-w-3xs`;
 export const glassMenuItem = `p-3 transition duration-200 ease-in hover:bg-black/50 hover:cursor-pointer`;
+
+const mediumGlassBase = `rounded-md backdrop-blur-md border border-gray-500/40 border-b-gray-300/40`;
+export const mediumGlass = `${mediumGlassBase} glare`;
+export const mediumGlassButton = `${mediumGlass} ${transitionSizeLarge} hover:cursor-pointer px-5 py-3 rounded-md`;
+export const mediumAccentGlass = `${mediumGlassBase} shadow-lg shadow-cyan-500/50 accent-glare`;
+export const mediumAccentGlassButton = `${mediumAccentGlass} ${transitionSizeLarge} hover:cursor-pointer px-5 py-3 rounded-md`;

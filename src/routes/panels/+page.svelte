@@ -1,6 +1,12 @@
 
 <script lang="ts">
-    import {flatGlassButton, glassMenu, glassMenuItem, medTitle, roundedGlassButton} from "$lib/styles/styles.ts";
+    import {
+        flatGlassButton,
+        glassMenu,
+        glassMenuItem,
+        mediumAccentGlassButton,
+        medTitle,
+    } from "$lib/styles/styles.ts";
     import Card from "$lib/components/Card.svelte";
     import { Label, Select } from "bits-ui";
     import { ChevronDown } from "@lucide/svelte";
@@ -57,7 +63,7 @@
     onMount(() => search());
 </script>
 
-<div class="md:w-3/5 sm:w-full m-auto p-3 mt-[80px]">
+<div class="md:w-4/5 sm:w-full m-auto p-3 mt-[80px]">
 
     <h1 class="{medTitle}">Imagine Displays' Series</h1>
 
@@ -114,7 +120,7 @@
                 </Select.Portal>
             </Select.Root>
         </div>
-        <button class="h-[50px] {roundedGlassButton} my-4 md:my-0 md:mr-3 p-0" onclick={search}>Search</button>
+        <button class="h-[50px] {mediumAccentGlassButton} my-4 md:my-0 md:mr-3 p-0" onclick={search}>Search</button>
         <button class="h-[50px] {flatGlassButton}" onclick={clear}>Clear</button>
     </div>
 

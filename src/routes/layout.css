@@ -13,6 +13,14 @@
     .dark-glass-background {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.65));
     }
+
+    .glare {
+        background: rgba(30, 30, 50, 0.55) linear-gradient(to top, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.05));
+    }
+
+    .accent-glare {
+        background: rgba(35, 150, 200, 0.20) linear-gradient(to top, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.05));
+    }
 }
 
 img {
