@@ -133,9 +133,10 @@
     </div>
 
     <h2 class="mt-6 {medTitle}">Available Panels:</h2>
-    <hr class="my-3"/>
+</div>
 
-    <div class="flex flex-wrap align-stretch">
+<div class="bg-dots">
+    <div class="flex flex-wrap align-stretch m-auto md:w-4/5 sm:w-full py-3">
         {@render product("Product Title", "Active", () => console.log("downloading"), false)}
         {@render product("Product Title", "Active", () => console.log("downloading"), false)}
         {@render product("Product Title", "Active", () => console.log("downloading"), false)}
@@ -149,11 +150,10 @@
         z-index: 0;
     }
 
-    .max-z {
-        z-index: 10;
-    }
-
-    .max-z * {
-        z-index: 10;
+    .bg-dots {
+        background-image: url('/dots2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 </style>

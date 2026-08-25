@@ -29,7 +29,7 @@
             <img class="rounded-xl w-full {reverse ? 'md:ml-2' : 'md:mr-2' }" src="{src}" alt="{alt}" />
 
             <div class="w-full {reverse ? 'md:mr-2' : 'md:ml-2' } relative mt-3 md:mt-0">
-                <div class="p-2 backdrop-blur-md bg-gray-700/40 rounded-xl mb-3 md:mb-15">
+                <div class="p-2 backdrop-blur-sm bg-gray-700/40 rounded-xl mb-3 md:mb-15">
                     <h3 class="{smallTitle} {reverse ? 'text-start' : 'md:text-end' }">{title}</h3>
                     <hr class="my-3"/>
                     <p class="text-lg">{text}</p>

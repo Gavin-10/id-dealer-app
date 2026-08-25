@@ -91,7 +91,7 @@
 
 {@render children()}
 
-<div class="mt-7 p-10">
+<div class="p-10 bg-sky-800">
     <p class="text-center">&copy Copyright Imagine Displays. All rights reserved.</p>
 </div>
 

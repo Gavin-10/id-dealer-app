@@ -9,7 +9,7 @@
 
 </script>
 
-<div class="bg-gray-700/40 p-3 rounded-xl backdrop-blur-md">
+<div class="bg-gray-700/40 p-3 rounded-xl backdrop-blur-sm">
     <h3 class="{smallTitle}">{title}</h3>
     <h4 class="font-semibold text-2xl">{subtitle}</h4>
     <hr />
