@@ -19,7 +19,7 @@
     }
 
     .accent-glare {
-        background: rgba(35, 150, 200, 0.20) linear-gradient(to top, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.05));
+        background: rgba(30, 30, 50, 0.55) linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.06));
     }
 }
 

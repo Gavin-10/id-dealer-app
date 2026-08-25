@@ -20,5 +20,5 @@ export const glassMenuItem = `p-3 transition duration-200 ease-in hover:bg-black
 const mediumGlassBase = `rounded-md backdrop-blur-md border border-gray-500/40 border-b-gray-300/40`;
 export const mediumGlass = `${mediumGlassBase} glare`;
 export const mediumGlassButton = `${mediumGlass} ${transitionSizeLarge} hover:cursor-pointer px-5 py-3 rounded-md`;
-export const mediumAccentGlass = `${mediumGlassBase} shadow-lg shadow-cyan-500/50 accent-glare`;
-export const mediumAccentGlassButton = `${mediumAccentGlass} ${transitionSizeLarge} hover:cursor-pointer px-5 py-3 rounded-md`;
+export const mediumAccentGlass = `rounded-md backdrop-blur-md border border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20 accent-glare`;
+export const mediumAccentGlassButton = `${mediumAccentGlass} ${transitionSizeLarge} shadow- shadow-cyan-500 text-cyan-500 hover:cursor-pointer px-5 py-3 rounded-md`;

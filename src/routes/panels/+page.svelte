@@ -14,8 +14,8 @@
 
     let { data } = $props();
 
-    let selectedGroup = $derived(data.search.group);
-    let selectedMarket = $derived(data.search.market);
+    let selectedGroup = $derived(data.search.group ?? "All Groups");
+    let selectedMarket = $derived(data.search.market ?? "All Markets");
     let searchVal = $state("");
 
     const groups = ["All Groups", "Indoor", "Outdoor"];

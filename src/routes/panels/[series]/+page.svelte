@@ -36,7 +36,7 @@
                         <p>Some Spec:</p>
                         <p>Some Value</p>
                     </div>
-                    <hr class="text-gray-600"/>
+                    <hr class="text-gray-400"/>
                 </li>
 
                 <li>
@@ -111,8 +111,8 @@
     </div>
 {/snippet}
 
-<img class="w-full h-[250px] md:h-[550px] fixed top-0 min-z" src="/test_gradient.jpg" alt="sample"/>
-<div class="relative md:w-4/5 sm:w-full m-auto p-3 mt-[250px] md:mt-[550px] max-z">
+<img class="w-full h-[250px] md:h-[550px] min-z" src="/test_gradient.jpg" alt="sample"/>
+<div class="relative md:w-4/5 sm:w-full m-auto p-3 mt-[-116px] z-5">
     <div class="bg-[#12131a] p-5 rounded-2xl">
         <h1 class="my-3 {medTitle}">{ data.series }</h1>
         <hr class="mb-3"/>
