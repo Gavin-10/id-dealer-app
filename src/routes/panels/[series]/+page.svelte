@@ -11,7 +11,7 @@
 {#snippet seriesInfo(title: string, text: string)}
     <div class="my-3 z-10">
         <h3 class="{smallTitle}">{title}</h3>
-        <p class="text-lg">{text}</p>
+        <p>{text}</p>
     </div>
 {/snippet}
 
@@ -113,7 +113,7 @@
 
 <img class="w-full h-[250px] md:h-[550px] min-z" src="/test_gradient.jpg" alt="sample"/>
 <div class="relative md:w-4/5 sm:w-full m-auto p-3 mt-[-116px] z-5">
-    <div class="bg-[#12131a] p-5 rounded-2xl">
+    <div class="bg-(--site-background) p-5 rounded-2xl">
         <h1 class="my-3 {medTitle}">{ data.series }</h1>
         <hr class="mb-3"/>
 
