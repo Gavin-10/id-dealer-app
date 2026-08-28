@@ -67,4 +67,50 @@
             </div>
         </div>
     </div>
+
+    <div class="mt-10 flex flex-col md:flex-row justify-between">
+        <div class="p-3 mb-3 md:mr-1.5 {mediumGlass} h-60 md:max-w-70 w-full flex flex-col justify-center align-center">
+            <div class="logo-box mx-auto">
+                <img class="w-[66px]" src="/Facebook_Logo_Primary.png" alt="Facebook logo"/>
+            </div>
+            <a class="mt-7 text-center underline hover:cursor-pointer transition hover:text-[#1877f2]" href="https://www.facebook.com/share/1EDoPCkZNz/?mibextid=wwXIfr">@imagine-displays</a>
+        </div>
+
+        <div class="p-3 mb-3 md:mx-1.5 {mediumGlass} h-60 md:max-w-70 w-full flex flex-col justify-center align-center">
+            <div class="logo-box mx-auto">
+                <img class="w-[66px]" src="/LI-In-Bug.png" alt="LinkedIn logo"/>
+            </div>
+            <a class="mt-7 text-center underline hover:cursor-not-allowed transition hover:text-gray-500">@imagine-displays</a>
+        </div>
+
+        <div class="p-3 mb-3 md:ml-1.5 {mediumGlass} h-60 md:max-w-70 w-full flex flex-col justify-center align-center">
+            <div class="logo-box mx-auto">
+                <img class="w-[66px]" src="/Instagram_Glyph_Gradient.png" alt="Instagram logo"/>
+            </div>
+            <a class="mt-7 text-center underline hover:cursor-pointer transition instagram" href="https://www.instagram.com/imaginedisplaysco?igsh=aDVxNWNhMngwbTV2&utm_source=qr">@imagine-displays</a>
+        </div>
+    </div>
 </div>
+
+<style>
+    .logo-box {
+        background-color: white;
+        border-radius: 100px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100px;
+        height: 100px;
+
+        box-shadow: 0 0 5px white;
+    }
+
+    .instagram:hover {
+        background: linear-gradient(to right, #ffd600, #ff7a00, #ff0069, #d300c5, #7638fa);
+        background-clip: text;
+        color: transparent;
+        text-decoration-color: #ff0069;
+    }
+</style>
