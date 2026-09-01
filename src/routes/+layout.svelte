@@ -5,8 +5,8 @@
     import { page } from "$app/state";
 
     import { NavigationMenu } from "bits-ui";
-    import { ChevronDown } from '@lucide/svelte';
-    import {darkRoundedGlass, glassMenu, glassMenuItem, transitionSizeLarge} from "$lib/styles/styles.ts";
+    import { ChevronDown, House, Headset, Package, Layers } from '@lucide/svelte';
+    import {glassMenu, glassMenuItem, transitionSizeLarge} from "$lib/styles/styles.ts";
 
     const { children } = $props();
 
@@ -50,7 +50,7 @@
     </NavigationMenu.Content>
 {/snippet}
 
-<div class="w-full h-[80px] px-4 py-3 flex justify-between items-center fixed z-10 top-0 left-0">
+<div class="w-full h-[80px] px-4 py-3 hidden md:flex justify-between items-center fixed z-10 top-0 left-0">
     <a href={resolve("/")} class="logo rounded-md backdrop-blur-md {transitionSizeLarge}">
         <img class="logo" src={asset("/logo_clear.png")} alt="Imagine Display Logo" />
     </a>
@@ -60,21 +60,21 @@
             <NavigationMenu.Item value="Solutions">
                 <NavigationMenu.Trigger class="{navTrigger} {includes("solutions") ? 'text-gray-500' : ''}" disabled={includes("solutions")}>
                     Solutions
-                    <ChevronDown />
+                    <ChevronDown class="mt-1"/>
                 </NavigationMenu.Trigger>
                 {@render content(solutions)}
             </NavigationMenu.Item>
             <NavigationMenu.Item value="Panels">
                 <NavigationMenu.Trigger class="{navTrigger} {includes("panels") ? 'text-gray-500' : ''}" disabled={includes("panels")}>
                     Panels
-                    <ChevronDown />
+                    <ChevronDown class="mt-1"/>
                 </NavigationMenu.Trigger>
                 {@render content(panels)}
             </NavigationMenu.Item>
             <NavigationMenu.Item value="accessories">
                 <NavigationMenu.Trigger class="{navTrigger} {includes("accessories") ? 'text-gray-500' : ''}" disabled={includes("accessories")}>
                     Accessories
-                    <ChevronDown />
+                    <ChevronDown class="mt-1"/>
                 </NavigationMenu.Trigger>
                 {@render content(accessories)}
             </NavigationMenu.Item>
@@ -87,6 +87,30 @@
             </NavigationMenu.Item>
         </NavigationMenu.List>
     </NavigationMenu.Root>
+</div>
+
+<div class="fixed z-10 bottom-0 left-0 w-full h-20 backdrop-blur-md md:hidden">
+    <div class="flex justify-between items-center w-full h-full px-5">
+        <a href={resolve('/')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {page.url.href.endsWith('5173/') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+            <House class="m-0"/>
+            <p class="text-sm">Home</p>
+        </a>
+
+        <button class="text-sm select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {includes('/orders') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+            <Layers class="m-0"/>
+            Products
+        </button>
+
+        <a href={resolve('/orders')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {includes('/orders') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+            <Package class="m-0"/>
+            <p class="text-sm">Orders</p>
+        </a>
+
+        <a href={resolve('/contact-us')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border transition active:scale-110 {includes('/contact-us') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+            <Headset class="m-0"/>
+            <p class="text-sm">Contact</p>
+        </a>
+    </div>
 </div>
 
 {@render children()}
