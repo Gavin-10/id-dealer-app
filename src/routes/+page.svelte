@@ -40,9 +40,9 @@
     </div>
 {/snippet}
 
-<img class="stage" src="/led_display.jpg" alt="Sample Display" />
+<img class="h-[225px] md:h-[550px] stage" src="/led_display.jpg" alt="Sample Display" />
 <div class="m-auto md:w-4/5 sm:w-full p-3">
-    <h1 class="{largeTitle} title-adjust">Welcome</h1>
+    <h1 class="{largeTitle} mt-[-165px] mb-[90px] md:mt-[-330px] md:mb-[230px]">Welcome</h1>
 
     <h2 class="{medTitle}">Your Profile</h2>
     <div class="flex flex-col md:flex-row items-stretch justify-between mt-3">
@@ -119,14 +119,8 @@
 <style>
     .stage {
         width: 100%;
-        height: 550px;
         object-fit: cover;
         overflow: hidden;
-    }
-
-    .title-adjust {
-        margin-top: -330px;
-        margin-bottom: 230px;
     }
 
     .gradient {
