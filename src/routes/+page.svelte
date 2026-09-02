@@ -66,15 +66,15 @@
         </div>
 
         <div class="w-full h-auto ml-0 sm:ml-3 mt-3 md:mt-0 flex flex-col justify-between">
-            <a href={resolve("/orders")} class="{mediumGlass} h-full mb-3 flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
+            <a href={resolve("/orders")} class="{mediumGlass} h-full mb-3 flex items-center justify-between font-normal text-left text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Manage Orders
                 <Package size="64"/>
             </a>
-            <a href={resolve("/contact-us")} class="{mediumGlass} h-full flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
+            <a href={resolve("/contact-us")} class="{mediumGlass} h-full flex items-center justify-between font-normal text-left text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Contact Us
-                <Headset size="64" />
+                <Headset size="64"/>
             </a>
-            <button class="{mediumGlass} h-full mt-3 flex items-center justify-between font-normal text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
+            <button class="{mediumGlass} h-full mt-3 flex items-center justify-between font-normal text-left text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Edit Information
                 <Pencil size="64"/>
             </button>
