@@ -22,6 +22,7 @@
     const markets = ["All Markets", "Commercial", "Education", "Government", "House of Worship", "Residential", "Visitor Experience", "Virtual Production/Cinema"];
     const titles = ["title 1", "title 2", "title 3", "title 4"];
 
+    //Search products with user search params
     const search = () => {
         const search = {
             value: searchVal,
@@ -32,6 +33,7 @@
         console.log(search);
     }
 
+    //Resets search form and clears results of search
     const clear = () => {
         selectedGroup = "All Groups";
         selectedMarket = "All Markets";
@@ -40,6 +42,7 @@
         search();
     }
 
+    //Returns tailwind css classes for each product grid item depending on index
     const getClasses = (index: number) => {
         let res;
 
@@ -64,9 +67,8 @@
 </script>
 
 <div class="md:w-4/5 sm:w-full m-auto p-3 mt-[80px]">
-
     <h1 class="{medTitle}">Imagine Displays' Series</h1>
-
+    <!--Panel search form-->
     <div class="flex flex-col md:flex-row justify-between md:items-end mt-5">
         <div class="w-full mr-3">
             <Label.Root for="search" class="m-0 p-0 text-sm font-medium">Search</Label.Root>
@@ -124,6 +126,7 @@
         <button class="h-[50px] {flatGlassButton}" onclick={clear}>Clear</button>
     </div>
 
+    <!--Panel grid list-->
     <div class="mt-5 flex flex-wrap justify-between">
         {#each titles as title, index (title)}
             <div class="w-full md:w-1/2 lg:w-1/3 mb-3 {getClasses(index)}">

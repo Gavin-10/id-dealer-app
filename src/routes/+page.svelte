@@ -13,6 +13,7 @@
     import { ChevronRight } from "@lucide/svelte";
 </script>
 
+<!--Snippet for space-separated text with optional horizontal rule underneath-->
 {#snippet simple_data(title: string, text: string, has_div: boolean)}
     <div class="flex justify-between items-center">
         <p>{title}:</p>
@@ -23,6 +24,7 @@
     {/if}
 {/snippet}
 
+<!--Snippet for each of product categories, includes image, description, and navigation button-->
 {#snippet product_module(src: string, alt: string, title: string, text: string, button: string, href: string, reverse: boolean, bg: string)}
     <div class="{bg} p-3 relative">
         <div class="flex flex-col items-stretch justify-between {reverse ? 'md:flex-row-reverse' : 'md:flex-row' } md:w-4/5 sm:w-full m-auto">
@@ -44,8 +46,10 @@
 <div class="m-auto md:w-4/5 sm:w-full p-3">
     <h1 class="{largeTitle} mt-[-165px] mb-[90px] md:mt-[-330px] md:mb-[230px]">Welcome</h1>
 
+    <!--Dealer profile segment-->
     <h2 class="{medTitle}">Your Profile</h2>
     <div class="flex flex-col md:flex-row items-stretch justify-between mt-3">
+        <!--Profile Information-->
         <div class="w-full p-3 gradient rounded-md mr-0 md:mr-3">
             <div class="flex justify-between items-center">
                 <h3 class="font-semibold text-2xl inline">Tier 1 Dealer</h3>
@@ -64,7 +68,7 @@
             {@render simple_data("Active Orders", "3", false)}
             {@render simple_data("Pending Orders", "1", false)}
         </div>
-
+        <!--Profile Actions-->
         <div class="w-full h-auto ml-0 sm:ml-3 mt-3 md:mt-0 flex flex-col justify-between">
             <a href={resolve("/orders")} class="{mediumGlass} h-full mb-3 flex items-center justify-between font-normal text-left text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Manage Orders
@@ -81,6 +85,8 @@
         </div>
     </div>
 </div>
+
+<!--Product categories-->
 <h2 class="{medTitle} mt-20 mb-5">Get Started</h2>
 {@render product_module(
     "/test_gradient.jpg",

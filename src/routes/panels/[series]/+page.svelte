@@ -8,6 +8,7 @@
     let { data } = $props();
 </script>
 
+<!--Snippet for each of the series information paragraphs-->
 {#snippet seriesInfo(title: string, text: string)}
     <div class="my-3 z-10">
         <h3 class="{smallTitle}">{title}</h3>
@@ -15,6 +16,7 @@
     </div>
 {/snippet}
 
+<!--Snippet for each of the series market blurbs-->
 {#snippet market(market: string, text: string)}
     <div class="flex justify-between items-stretch p-3 w-full md:w-1/2 text-blue-500">
         <Building class="w-[25%]" size="auto"/>
@@ -27,6 +29,7 @@
     </div>
 {/snippet}
 
+<!--Product card wrapper-->
 {#snippet product(title: string, subtitle: string, download: () => void, disabled: boolean)}
     <div class="w-full md:w-1/2 lg:w-1/3 p-1.5">
         <ProductCard title={title} subtitle={subtitle} download={download} disabled={disabled}>
@@ -112,7 +115,9 @@
 {/snippet}
 
 <img class="w-full h-[250px] md:h-[550px] min-z" src="/test_gradient.jpg" alt="sample"/>
+<!--Series information-->
 <div class="relative md:w-4/5 sm:w-full m-auto p-3 mt-[-116px] z-5">
+    <!--Information blurbs-->
     <div class="bg-(--site-background) p-5 rounded-2xl">
         <h1 class="my-3 {medTitle}">{ data.series }</h1>
         <hr class="mb-3"/>
@@ -126,6 +131,7 @@
     <h2 class="mt-6 {medTitle}">Ideal Applications In:</h2>
     <hr class="my-3"/>
 
+    <!--Market Blurbs-->
     <div class="flex flex-wrap justify-between">
         {@render market("Some Market", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")}
         {@render market("Some Market", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")}
@@ -135,6 +141,7 @@
     <h2 class="mt-6 {medTitle}">Available Panels:</h2>
 </div>
 
+<!--Series product cards-->
 <div class="bg-dots">
     <div class="flex flex-wrap align-stretch m-auto md:w-4/5 sm:w-full py-3">
         {@render product("Product Title", "Active", () => console.log("downloading"), false)}

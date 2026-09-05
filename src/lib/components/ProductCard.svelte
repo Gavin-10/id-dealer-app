@@ -1,7 +1,7 @@
 
 <script lang="ts">
 
-    import {flatGlassButton, mediumAccentGlassButton, smallTitle} from "$lib/styles/styles.ts";
+    import {mediumAccentGlassButton, smallTitle} from "$lib/styles/styles.ts";
 
     import { Download } from "@lucide/svelte";
 
