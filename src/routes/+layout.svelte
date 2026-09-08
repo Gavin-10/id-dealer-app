@@ -136,7 +136,7 @@
     {@render children()}
 </main>
 
-<footer>
+<footer class="z-5 relative">
     <div class="p-10 bg-sky-800">
         <p class="text-center">&copy Copyright Imagine Displays. All rights reserved.</p>
     </div>

@@ -21,13 +21,15 @@
 </script>
 
 <SubmissionDialog bind:isOpen={isOpen} success={form?.status === 200}/>
-<img class="w-full h-[300px] z-0" src="/dots2.jpg" alt="Contact Us Background" />
+<div class="h-[300px]">
+    <img class="w-full h-[300px] z-0" src="/dots2.jpg" alt="Contact Us Background" />
+    <h1 class="{largeTitle} mt-[-200px] mb-3">Connect With Us</h1>
+</div>
 
-<h1 class="{largeTitle} mt-[-250px] md:mt-[-200px] mb-3">Connect With Us</h1>
 <div class="{container}">
-    <div class="bg-(--site-background) relative z-5 backdrop-blur-md rounded-2xl p-5 flex flex-col md:flex-row justify-between align-stretch">
+    <div class="bg-(--site-background) relative z-5 backdrop-blur-md rounded-2xl flex flex-col md:flex-row justify-between align-stretch">
         <!--Contact form-->
-        <form method="POST" use:enhance class="w-full md:mr-1.5">
+        <form method="POST" use:enhance class="w-full md:mr-3">
             <div>
                 <Label.Root for="name" class="m-0 p-0 text-sm font-medium">Name</Label.Root>
                 <input required id="name" name="name" class="h-[50px] bg-transparent rounded-md w-full ring-0 outline-0 border border-gray-500 transition-colors duration-300 ease-in-out focus:border-(--site-blue)"/>
@@ -50,7 +52,7 @@
         </form>
 
         <!--Imagine Displays contact information-->
-        <div class="w-full mt-5 md:mt-0 md:ml-1.5 flex flex-col justify-between">
+        <div class="w-full mt-5 md:mt-0 md:ml-3 flex flex-col justify-between">
             <div class="mb-5">
                 <h3 class="{smallTitle} mb-2">General Inquiries</h3>
                 <hr class="text-gray-600"/>

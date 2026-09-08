@@ -49,9 +49,9 @@
         if ((index + 1) % 3 === 2) {
             res = "lg:px-1.5";
         } else if ((index + 1) % 3 === 1) {
-            res = "lg:pr-1.5";
+            res = "lg:pr-1.5 lg:pl-0";
         } else {
-            res = "lg:pl-1.5";
+            res = "lg:pl-1.5 lg:pr-0";
         }
 
         if ((index + 1) % 2 === 0) {
