@@ -6,7 +6,7 @@
 
     import { NavigationMenu } from "bits-ui";
     import { ChevronDown, House, Headset, Package, Layers } from '@lucide/svelte';
-    import {glassMenu, glassMenuItem, transitionSizeLarge} from "$lib/styles/styles.ts";
+    import {flatGlassButton, glassMenu, glassMenuItem, transitionSizeLarge} from "$lib/styles/styles.ts";
 
     const { children } = $props();
 
@@ -37,7 +37,7 @@
     }
 
     //styles
-    const navButtons = "relative flex mx-3 p-3 rounded-md hover:cursor-pointer transition duration-300 ease-in-out hover:scale-110 backdrop-blur-md";
+    const navButtons = `relative flex mx-3 p-3 ${flatGlassButton}`;
     const navTrigger = "relative flex mx-3 p-3 hover:cursor-pointer";
 </script>
 
@@ -57,7 +57,7 @@
 <!--Desktop navigation-->
 <header>
     <div class="w-full h-[80px] px-4 py-3 hidden md:flex justify-between items-center fixed z-10 top-0 left-0">
-        <a href={resolve("/")} class="logo rounded-md backdrop-blur-md {transitionSizeLarge}">
+        <a href={resolve("/")} class="logo backdrop-blur-md ${transitionSizeLarge} hover:cursor-pointer rounded-md backdrop-hue-rotate-30">
             <img class="logo" src={asset("/logo_clear.png")} alt="Imagine Display Logo" />
         </a>
 

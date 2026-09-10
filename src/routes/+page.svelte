@@ -1,13 +1,14 @@
 <script lang="ts">
     import { resolve } from "$app/paths"
-    import { Package, Headset, Pencil, ChevronRight } from "@lucide/svelte";
+    import {Package, Headset, Pencil, ChevronRight, Form} from "@lucide/svelte";
     import {
         flatGlassButton,
         largeTitle,
         mediumGlass,
         mediumGlassButton,
         medTitle,
-        smallTitle, transitionSizeLarge,
+        smallTitle,
+        transitionSizeLarge,
         transitionSizeSmall
     } from "$lib/styles/styles";
     import { AlertDialog, Label, RadioGroup } from "bits-ui";
@@ -15,6 +16,8 @@
     let tierDialog = $state(false);
     let showTierForm = $state(false);
     let selectedTier = $state("tier1");
+
+    let editInfo = $state(false);
 
     const openTierForm = () => {
         showTierForm = true;
@@ -24,6 +27,7 @@
     const submitTier = () => {
         console.log(selectedTier);
         showTierForm = false;
+        fetch("?/updateTier", { method: "POST", body: new FormData()});
     }
 </script>
 
@@ -116,6 +120,7 @@
             </div>
             <hr class="my-3"/>
 
+            {#if !editInfo}
             {@render simple_data("Business Name", "Some Business", false)}
             {@render simple_data("DBA", "Some DBA Name", true)}
 
@@ -126,6 +131,12 @@
             {@render simple_data("Total Orders", "1000", false)}
             {@render simple_data("Active Orders", "3", false)}
             {@render simple_data("Pending Orders", "1", false)}
+            {:else}
+                <div class="flex justify-between">
+                    <button class="{flatGlassButton}">Update</button>
+                    <button onclick={() => editInfo = false} class="{flatGlassButton}">Cancel</button>
+                </div>
+            {/if}
         </div>
         <!--Profile Actions-->
         <div class="w-full h-auto ml-0 sm:ml-3 mt-3 md:mt-0 flex flex-col justify-between">
@@ -137,7 +148,7 @@
                 Contact Us
                 <Headset size="64"/>
             </a>
-            <button class="{mediumGlass} h-full mt-3 flex items-center justify-between font-normal text-left text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
+            <button onclick={() => editInfo = true} class="{mediumGlass} h-full mt-3 flex items-center justify-between font-normal text-left text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
                 Edit Information
                 <Pencil size="64"/>
             </button>
@@ -146,7 +157,7 @@
 </div>
 
 <!--Product categories-->
-<h2 class="{medTitle} mt-20 mb-5">Get Started</h2>
+<h2 class="{medTitle} mb-5">Get Started</h2>
 {@render product_module(
     "/test_gradient.jpg",
     "Sample",
