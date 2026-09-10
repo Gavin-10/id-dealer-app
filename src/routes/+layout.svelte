@@ -97,28 +97,26 @@
 </header>
 
 <!--Mobile navigation-->
-<div class="fixed z-10 bottom-0 left-0 w-full md:hidden p-3">
-    <div class="flex justify-between items-center w-full p-3 rounded-full backdrop-blur-md">
-        <a href={resolve('/')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {page.url.href.endsWith('/') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
-            <House class="m-0" size="18"/>
-            <p class="text-xs">Home</p>
-        </a>
+<div class="fixed z-10 bottom-0 left-0 w-full md:hidden p-3 backdrop-blur-md flex justify-between items-center">
+    <a href={resolve('/')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {page.url.href.endsWith('/') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+        <House class="m-0" size="18"/>
+        <p class="text-xs">Home</p>
+    </a>
 
-        <button onclick={() => mobileOpen = !mobileOpen} class="text-xs select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {includes('/panels') || includes('/solutions') || includes('/accessories') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
-            <Layers class="m-0" size="18"/>
-            Products
-        </button>
+    <button onclick={() => mobileOpen = !mobileOpen} class="text-xs select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {includes('/panels') || includes('/solutions') || includes('/accessories') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+        <Layers class="m-0" size="18"/>
+        Products
+    </button>
 
-        <a href={resolve('/orders')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {includes('/orders') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
-            <Package class="m-0" size="18"/>
-            <p class="text-xs">Orders</p>
-        </a>
+    <a href={resolve('/orders')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {includes('/orders') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+        <Package class="m-0" size="18"/>
+        <p class="text-xs">Orders</p>
+    </a>
 
-        <a href={resolve('/contact-us')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border transition active:scale-110 {includes('/contact-us') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
-            <Headset class="m-0" size="18"/>
-            <p class="text-xs">Contact</p>
-        </a>
-    </div>
+    <a href={resolve('/contact-us')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border transition active:scale-110 {includes('/contact-us') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
+        <Headset class="m-0" size="18"/>
+        <p class="text-xs">Contact</p>
+    </a>
 </div>
 
 <!--Mobile product drawer-->

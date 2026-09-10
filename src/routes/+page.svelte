@@ -1,16 +1,30 @@
 <script lang="ts">
     import { resolve } from "$app/paths"
-    import { Package, Headset, Pencil } from "@lucide/svelte";
+    import { Package, Headset, Pencil, ChevronRight } from "@lucide/svelte";
     import {
         flatGlassButton,
         largeTitle,
         mediumGlass,
         mediumGlassButton,
         medTitle,
-        smallTitle,
+        smallTitle, transitionSizeLarge,
         transitionSizeSmall
     } from "$lib/styles/styles";
-    import { ChevronRight } from "@lucide/svelte";
+    import { AlertDialog, Label, RadioGroup } from "bits-ui";
+
+    let tierDialog = $state(false);
+    let showTierForm = $state(false);
+    let selectedTier = $state("tier1");
+
+    const openTierForm = () => {
+        showTierForm = true;
+        tierDialog = true;
+    }
+
+    const submitTier = () => {
+        console.log(selectedTier);
+        showTierForm = false;
+    }
 </script>
 
 <!--Snippet for space-separated text with optional horizontal rule underneath-->
@@ -42,6 +56,51 @@
     </div>
 {/snippet}
 
+<AlertDialog.Root bind:open={tierDialog}>
+    <AlertDialog.Portal>
+        <AlertDialog.Overlay class=" bg-black/40 backdrop-blur-md fixed inset-0 z-50"/>
+        <AlertDialog.Content class="{mediumGlass} shadow-lg p-4 w-[90%] md:w-[400px] border fixed left-[5%] md:left-[50%] md:translate-x-[-200px] top-[25%] z-50">
+            {#if showTierForm}
+            <AlertDialog.Title class="text-center text-3xl font-medium">Select Tier</AlertDialog.Title>
+            <RadioGroup.Root bind:value={selectedTier} class="flex flex-col gap-4 mb-3">
+                <div class="text-foreground group flex select-none items-center transition-all">
+                    <RadioGroup.Item
+                            value="tier1"
+                            class="mr-2 border-border-input bg-background hover:border-dark-40 data-[state=checked]:border-cyan-500 data-[state=checked]:border-6 size-5 shrink-0 cursor-default rounded-full border transition-all duration-100 ease-in-out"
+                    />
+                    <Label.Root>Tier 1</Label.Root>
+                </div>
+                <div class="text-foreground group flex select-none items-center transition-all">
+                    <RadioGroup.Item
+                            value="tier2"
+                            class="mr-2 border-border-input bg-background hover:border-dark-40 data-[state=checked]:border-cyan-500 data-[state=checked]:border-6 size-5 shrink-0 cursor-default rounded-full border transition-all duration-100 ease-in-out"
+                    />
+                    <Label.Root>Tier 2</Label.Root>
+                </div>
+                <div class="text-foreground group flex select-none items-center transition-all">
+                    <RadioGroup.Item
+                            value="tier3"
+                            class="mr-2 border-border-input bg-background hover:border-dark-40 data-[state=checked]:border-cyan-500 data-[state=checked]:border-6 size-5 shrink-0 cursor-default rounded-full border transition-all duration-100 ease-in-out"
+                    />
+                    <Label.Root>Tier 3</Label.Root>
+                </div>
+                <div class="text-foreground group flex select-none items-center transition-all">
+                    <RadioGroup.Item
+                            value="preferred"
+                            class="mr-2 border-border-input bg-background hover:border-dark-40 data-[state=checked]:border-cyan-500 data-[state=checked]:border-6 size-5 shrink-0 cursor-default rounded-full border transition-all duration-100 ease-in-out"
+                    />
+                    <Label.Root>Preferred Tier</Label.Root>
+                </div>
+            </RadioGroup.Root>
+            <button onclick={submitTier} class="{transitionSizeLarge} w-full text-center">Submit Request</button>
+            {:else}
+            <AlertDialog.Title class="text-center text-3xl font-medium">Tier Requested</AlertDialog.Title>
+            <AlertDialog.Cancel class="{transitionSizeLarge} mt-8 w-full p-2 rounded-md text-lg">Dismiss</AlertDialog.Cancel>
+            {/if}
+        </AlertDialog.Content>
+    </AlertDialog.Portal>
+</AlertDialog.Root>
+
 <img class="h-[225px] md:h-[550px] stage" src="/led_display.jpg" alt="Sample Display" />
 <div class="m-auto md:w-4/5 sm:w-full p-3">
     <h1 class="{largeTitle} mt-[-165px] mb-[90px] md:mt-[-330px] md:mb-[230px]">Welcome</h1>
@@ -53,7 +112,7 @@
         <div class="w-full p-3 gradient rounded-md mr-0 md:mr-3">
             <div class="flex justify-between items-center">
                 <h3 class="font-semibold text-2xl inline">Tier 1 Dealer</h3>
-                <button class="{flatGlassButton} backdrop-hue-rotate-30">Change Tier</button>
+                <button onclick={openTierForm} class="{flatGlassButton} backdrop-hue-rotate-30">Change Tier</button>
             </div>
             <hr class="my-3"/>
 
