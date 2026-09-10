@@ -69,6 +69,7 @@
 	],
 	"dependencies": {
 		"@lucide/svelte": "^1.28.0",
-		"bits-ui": "^2.18.1"
+		"bits-ui": "^2.18.1",
+		"tailwindcss-animate": "^1.0.7"
 	}
 }
