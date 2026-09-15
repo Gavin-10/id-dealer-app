@@ -12,6 +12,7 @@
         transitionSizeSmall
     } from "$lib/styles/styles";
     import { AlertDialog, Label, RadioGroup } from "bits-ui";
+    import TextInput from "$lib/components/TextInput.svelte";
 
     let tierDialog = $state(false);
     let showTierForm = $state(false);
@@ -25,9 +26,10 @@
     }
 
     const submitTier = () => {
-        console.log(selectedTier);
         showTierForm = false;
-        fetch("?/updateTier", { method: "POST", body: new FormData()});
+        const data = new FormData();
+        data.append('tier', selectedTier);
+        fetch("?/updateTier", { method: "POST", body: data });
     }
 </script>
 
@@ -132,10 +134,28 @@
             {@render simple_data("Active Orders", "3", false)}
             {@render simple_data("Pending Orders", "1", false)}
             {:else}
+            <form method="POST" action="?/updateInfo">
+                <TextInput tag="businessName" label="Business Name" required/>
+                <TextInput tag="dba" label="DBA" required={false}/>
+                <hr class="mt-3"/>
+
+                <TextInput tag="street" label="Street Address" required/>
                 <div class="flex justify-between">
-                    <button class="{flatGlassButton}">Update</button>
+                    <div class="w-full mr-1.5">
+                        <TextInput tag="city" label="City" required/>
+                    </div>
+                    <div class="w-full ml-1.5">
+                        <TextInput tag="state" label="State" required/>
+                    </div>
+                </div>
+                <TextInput tag="zip" label="Zip Code" required/>
+                <hr class="mt-3"/>
+
+                <div class="flex justify-between mt-3">
+                    <button type="submit" class="{flatGlassButton}">Update</button>
                     <button onclick={() => editInfo = false} class="{flatGlassButton}">Cancel</button>
                 </div>
+            </form>
             {/if}
         </div>
         <!--Profile Actions-->

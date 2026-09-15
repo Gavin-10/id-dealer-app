@@ -7,7 +7,8 @@ export const actions = {
 		console.log(data);
 	},
 
-	updateTier: async () => {
-		console.log("working");
+	updateTier: async ({ request }) => {
+		const data = await request.formData();
+		console.log(data);
 	}
 } satisfies Actions;

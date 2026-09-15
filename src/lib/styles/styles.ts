@@ -25,6 +25,7 @@ export const mediumAccentGlassButton = `${mediumAccentGlass} ${transitionSizeLar
 
 export const container = 'm-auto md:w-4/5 sm:w-full p-3';
 
-const inputBase = "";
-export const redInput = `${inputBase}`;
-export const blueInput = `${inputBase}`;
+const inputBase = 'bg-transparent rounded-md w-full ring-0 outline-0 border border-gray-500 transition-colors duration-300 ease-in-out';
+export const plainInput = `${inputBase} focus:border-white`;
+export const redInput = `${inputBase} focus:border-(--site-red)`;
+export const blueInput = `${inputBase} focus:border-(--site-blue)`;
