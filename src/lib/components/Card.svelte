@@ -6,7 +6,7 @@
 </script>
 
 <a href={to}>
-    <div class="{mediumGlass} hover:cursor-pointer transition duration-300 ease-in-out hover:-translate-y-1">
+    <div class="{mediumGlass} hover:cursor-pointer transition duration-300 ease-in-out hover:-translate-y-1 h-full">
         <img class="w-full h-[280px] rounded-t-md" src={src} alt={alt} />
         <div class="p-3">
             <h2 class="font-semibold text-2xl">{title}</h2>

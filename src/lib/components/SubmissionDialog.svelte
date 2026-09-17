@@ -13,7 +13,7 @@
 <AlertDialog.Root bind:open={isOpen}>
     <AlertDialog.Portal>
         <AlertDialog.Overlay class="bg-black/40 backdrop-blur-md fixed inset-0 z-50"/>
-        <AlertDialog.Content class="{mediumGlass} shadow-lg {shadow} p-4 w-md border {borderColor} {bottomBorderColor} fixed left-[50%] translate-x-[-43%] top-[10%] z-50 bg-[#171717]">
+        <AlertDialog.Content class="{mediumGlass} shadow-lg {shadow} p-4 w-[90%] md:w-[500px] border fixed left-[5%] md:left-[50%] md:translate-x-[-250px] top-[10%] z-50 border {borderColor} {bottomBorderColor}">
             <AlertDialog.Title class="text-center text-3xl font-medium">Form Process{success ? "ed Successfully" : " Failed"}</AlertDialog.Title>
             <AlertDialog.Cancel class="{transitionSizeLarge} {textColor} mt-8 w-full p-2 rounded-md text-lg">Dismiss</AlertDialog.Cancel>
         </AlertDialog.Content>

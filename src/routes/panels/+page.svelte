@@ -11,12 +11,16 @@
     import { Label, Select } from "bits-ui";
     import { ChevronDown } from "@lucide/svelte";
     import {onMount} from "svelte";
+    import type { Series } from "$lib/model/ledPanels.ts"
 
     let { data } = $props();
 
     let selectedGroup = $derived(data.search.group ?? "All Groups");
     let selectedMarket = $derived(data.search.market ?? "All Markets");
     let searchVal = $state("");
+
+    let resFinal = data.res;
+    let resDyn = $state<Series[]>(resFinal);
 
     const groups = ["All Groups", "Indoor", "Outdoor"];
     const markets = ["All Markets", "Commercial", "Education", "Government", "House of Worship", "Residential", "Visitor Experience", "Virtual Production/Cinema"];
@@ -127,11 +131,11 @@
     </div>
 
     <!--Panel grid list-->
-    <div class="mt-5 flex flex-wrap justify-between">
-        {#each titles as title, index (title)}
-            <div class="w-full md:w-1/2 lg:w-1/3 mb-3 {getClasses(index)}">
-                <Card title={title} subtitle="Subtitle" src="/test_gradient.jpg" alt="test" to="/panels/{title}">
-                    <p>Some Paragraphs</p>
+    <div class="mt-5 flex flex-wrap justify-between items-stretch">
+        {#each resDyn as series, index (index)}
+            <div class="w-full h-auto md:w-1/2 lg:w-1/3 mb-3 {getClasses(index)}">
+                <Card title={series.seriesModel} subtitle="{series._count.products} panels in this series!" src={series.photo} alt={series.seriesModel} to="/panels/{series.seriesModel}">
+                    <p>{series.shortDescription}</p>
                 </Card>
             </div>
         {/each}
