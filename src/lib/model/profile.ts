@@ -16,3 +16,8 @@ export interface BusinessInfo {
 	state: string;
 	zip: string;
 }
+
+export interface UserSession {
+	user: object | null;
+	session: object | null;
+}

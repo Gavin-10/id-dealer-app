@@ -55,7 +55,7 @@
 {/snippet}
 
 <!--Desktop navigation-->
-<header>
+<header class={includes("login") ? "hidden" : ""}>
     <div class="w-full h-[80px] px-4 py-3 hidden md:flex justify-between items-center fixed z-10 top-0 left-0">
         <a href={resolve("/")} class="logo backdrop-blur-md ${transitionSizeLarge} hover:cursor-pointer rounded-md backdrop-hue-rotate-30">
             <img class="logo" src={asset("/logo_clear.png")} alt="Imagine Display Logo" />
@@ -97,7 +97,7 @@
 </header>
 
 <!--Mobile navigation-->
-<div class="fixed z-10 bottom-0 left-0 w-full md:hidden p-3 backdrop-blur-md flex justify-between items-center">
+<div class="{includes('login') ? 'hidden' : ''} fixed z-10 bottom-0 left-0 w-full md:hidden p-3 backdrop-blur-md flex justify-between items-center">
     <a href={resolve('/')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {page.url.href.endsWith('/') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
         <House class="m-0" size="18"/>
         <p class="text-xs">Home</p>
@@ -134,7 +134,7 @@
     {@render children()}
 </main>
 
-<footer class="z-5 relative">
+<footer class="{includes('login') ? 'hidden' : ''} z-5 relative">
     <div class="p-10 bg-sky-800">
         <p class="text-center">&copy Copyright Imagine Displays. All rights reserved.</p>
     </div>
