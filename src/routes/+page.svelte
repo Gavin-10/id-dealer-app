@@ -1,6 +1,6 @@
 <script lang="ts">
     import { resolve } from "$app/paths"
-    import {Package, Headset, Pencil, ChevronRight, Form} from "@lucide/svelte";
+    import {Package, Headset, Pencil, ChevronRight} from "@lucide/svelte";
     import {
         flatGlassButton,
         largeTitle,
