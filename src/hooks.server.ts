@@ -8,6 +8,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			fetchOptions: {
 				headers: {
 					cookie: event.request.headers.get('cookie') ?? '',
+					origin: event.request.headers.get('origin'),
 				}
 			}
 		});

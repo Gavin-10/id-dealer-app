@@ -24,7 +24,7 @@
                 email,
                 password,
                 rememberMe: false,
-                callbackURL: '/'
+                callbackURL: '/',
             });
 
             if (error) {
