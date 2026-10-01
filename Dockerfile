@@ -4,6 +4,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
+
+ARG PUBLIC_API_URL
+ENV PUBLIC_API_URL="https://api-service-437273688250.us-central1.run.app"
+
 RUN npm run build
 RUN npm prune --production
 
