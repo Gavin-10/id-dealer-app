@@ -5,8 +5,15 @@
     import { page } from "$app/state";
 
     import { NavigationMenu } from "bits-ui";
-    import { ChevronDown, House, Headset, Package, Layers } from '@lucide/svelte';
-    import {flatGlassButton, glassMenu, glassMenuItem, transitionSizeLarge} from "$lib/styles/styles.ts";
+    import { ChevronDown, House, Headset, Package, Layers, LogOut } from '@lucide/svelte';
+    import {
+        flatGlassButton,
+        glassMenu,
+        glassMenuItem,
+        transitionSizeLarge
+    } from "$lib/styles/styles.ts";
+    import {authClient} from "$lib/client.ts";
+    import {goto} from "$app/navigation";
 
     const { children } = $props();
 
@@ -39,6 +46,11 @@
     //styles
     const navButtons = `relative flex mx-3 p-3 ${flatGlassButton}`;
     const navTrigger = "relative flex mx-3 p-3 hover:cursor-pointer";
+
+    const logout = async () => {
+        await authClient.signOut({});
+        await goto(resolve("/login"));
+    }
 </script>
 
 <!--Snippet for nav bar drop down menu-->
@@ -91,12 +103,18 @@
                 <NavigationMenu.Item class={navButtons}>
                     <NavigationMenu.Link href="/contact-us">Contact Us</NavigationMenu.Link>
                 </NavigationMenu.Item>
+                <NavigationMenu.Item class={navButtons}>
+                    <button onclick={logout} class="flex justify-between items-center hover:cursor-pointer">Log Out <LogOut class="ml-1.5"/></button>
+                </NavigationMenu.Item>
             </NavigationMenu.List>
         </NavigationMenu.Root>
     </div>
 </header>
 
 <!--Mobile navigation-->
+<div class="{includes('login') ? 'hidden' : ''} fixed z-10 top-5 right-5 md:hidden">
+    <button onclick={logout} class="backdrop-blur-md border border-gray-500/40 border-b-gray-400/40 glare {transitionSizeLarge} hover:cursor-pointer p-3 rounded-full"><LogOut /></button>
+</div>
 <div class="{includes('login') ? 'hidden' : ''} fixed z-10 bottom-0 left-0 w-full md:hidden p-3 backdrop-blur-md flex justify-between items-center">
     <a href={resolve('/')} class="select-none flex flex-col items-center w-20 p-2 rounded-full backdrop-blur-md border  transition active:scale-110 {page.url.href.endsWith('/') ? 'border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20' : 'border-gray-300/10 border-b-gray-200/15'}">
         <House class="m-0" size="18"/>

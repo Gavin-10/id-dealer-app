@@ -4,11 +4,12 @@ import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	try {
+
 		const { data } = await authClient.getSession({
 			fetchOptions: {
 				headers: {
 					cookie: event.request.headers.get('cookie') ?? '',
-					origin: event.request.headers.get('origin'),
+					origin: event.url.origin,
 				}
 			}
 		});
