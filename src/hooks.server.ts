@@ -3,8 +3,11 @@ import { authClient } from '$lib/client';
 import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	try {
+	if (event.url.pathname.startsWith('/api')) {
+		return resolve(event);
+	}
 
+	try {
 		const { data } = await authClient.getSession({
 			fetchOptions: {
 				fetch: event.fetch,
