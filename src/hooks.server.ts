@@ -7,6 +7,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		const { data } = await authClient.getSession({
 			fetchOptions: {
+				fetch: event.fetch,
 				headers: {
 					cookie: event.request.headers.get('cookie') ?? '',
 					origin: event.url.origin,
@@ -23,7 +24,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.error = true;
 	}
 
-	const atLogin = event.url.pathname === '/login';
+	const atLogin = event.route.id === '/login';
 
 	if (!event.locals.session && !atLogin) {
 		throw redirect(302, '/login');
