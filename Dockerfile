@@ -7,6 +7,8 @@ COPY . .
 
 ARG PUBLIC_API_URL
 ENV PUBLIC_API_URL="https://api-service-437273688250.us-central1.run.app"
+ARG PUBLIC_FRONTEND_URL
+ENV PUBLIC_FRONTEND_URL="https://dealer-site-437273688250.us-central1.run.app"
 
 RUN npm run build
 RUN npm prune --production
