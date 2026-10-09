@@ -12,3 +12,7 @@ export const actions = {
 		console.log(data);
 	}
 } satisfies Actions;
+
+export const load = async ({ locals }) => {
+	return { user: locals.user };
+};

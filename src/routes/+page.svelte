@@ -13,7 +13,10 @@
     } from "$lib/styles/styles";
     import { AlertDialog, Label, RadioGroup } from "bits-ui";
     import TextInput from "$lib/components/TextInput.svelte";
+    import { onMount } from "svelte";
 
+    let { data } = $props();
+    let address = $derived(data.user.address.split(','));
     let tierDialog = $state(false);
     let showTierForm = $state(false);
     let selectedTier = $state("tier1");
@@ -31,6 +34,10 @@
         data.append('tier', selectedTier);
         fetch("?/updateTier", { method: "POST", body: data });
     }
+
+    onMount(() => {
+        console.log(data.user);
+    })
 </script>
 
 <!--Snippet for space-separated text with optional horizontal rule underneath-->
@@ -117,22 +124,22 @@
         <!--Profile Information-->
         <div class="w-full p-3 gradient rounded-md mr-0 md:mr-3">
             <div class="flex justify-between items-center">
-                <h3 class="font-semibold text-2xl inline">Tier 1 Dealer</h3>
+                <h3 class="font-semibold text-2xl inline">{data.user.tier} Dealer</h3>
                 <button onclick={openTierForm} class="{flatGlassButton} backdrop-hue-rotate-30">Change Tier</button>
             </div>
             <hr class="my-3"/>
 
             {#if !editInfo}
-            {@render simple_data("Business Name", "Some Business", false)}
-            {@render simple_data("DBA", "Some DBA Name", true)}
+            {@render simple_data("Business Name", data.user.business, false)}
+            {@render simple_data("DBA", data.user.dba, true)}
 
-            {@render simple_data("Address", "123 Big Address Ave", false)}
-            {@render simple_data("City State", "Big City, Big State", false)}
-            {@render simple_data("Zip Code", "12345-6789", true)}
+            {@render simple_data("Address", address[0], false)}
+            {@render simple_data("City State", address[1] + ", " + address[2], false)}
+            {@render simple_data("Zip Code", address[3], true)}
 
-            {@render simple_data("Total Orders", "1000", false)}
-            {@render simple_data("Active Orders", "3", false)}
-            {@render simple_data("Pending Orders", "1", false)}
+            {@render simple_data("Total Orders", data.user.totalOrders, false)}
+            {@render simple_data("Active Orders", data.user.activeOrders, false)}
+            {@render simple_data("Pending Orders", data.user.pendingOrders, false)}
             {:else}
             <form method="POST" action="?/updateInfo">
                 <TextInput tag="businessName" label="Business Name" required/>
