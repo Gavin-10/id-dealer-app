@@ -124,38 +124,38 @@
         <!--Profile Information-->
         <div class="w-full p-3 gradient rounded-md mr-0 md:mr-3">
             <div class="flex justify-between items-center">
-                <h3 class="font-semibold text-2xl inline">{data.user.tier} Dealer</h3>
+                <h3 class="font-semibold text-2xl inline">{data.user?.tier} Dealer</h3>
                 <button onclick={openTierForm} class="{flatGlassButton} backdrop-hue-rotate-30">Change Tier</button>
             </div>
             <hr class="my-3"/>
 
             {#if !editInfo}
-            {@render simple_data("Business Name", data.user.business, false)}
-            {@render simple_data("DBA", data.user.dba, true)}
+            {@render simple_data("Business Name", data.user?.business, false)}
+            {@render simple_data("DBA", data.user?.dba, true)}
 
             {@render simple_data("Address", address[0], false)}
             {@render simple_data("City State", address[1] + ", " + address[2], false)}
             {@render simple_data("Zip Code", address[3], true)}
 
-            {@render simple_data("Total Orders", data.user.totalOrders, false)}
-            {@render simple_data("Active Orders", data.user.activeOrders, false)}
-            {@render simple_data("Pending Orders", data.user.pendingOrders, false)}
+            {@render simple_data("Total Orders", data.user?.totalOrders, false)}
+            {@render simple_data("Active Orders", data.user?.activeOrders, false)}
+            {@render simple_data("Pending Orders", data.user?.pendingOrders, false)}
             {:else}
             <form method="POST" action="?/updateInfo">
-                <TextInput tag="businessName" label="Business Name" required/>
-                <TextInput tag="dba" label="DBA" required={false}/>
+                <TextInput value={data.user?.business ?? ""} tag="businessName" label="Business Name" required/>
+                <TextInput value={data.user?.dba ?? ""} tag="dba" label="DBA" required={false}/>
                 <hr class="mt-3"/>
 
-                <TextInput tag="street" label="Street Address" required/>
+                <TextInput value={address[0]} tag="street" label="Street Address" required/>
                 <div class="flex justify-between">
                     <div class="w-full mr-1.5">
-                        <TextInput tag="city" label="City" required/>
+                        <TextInput value={address[1]} tag="city" label="City" required/>
                     </div>
                     <div class="w-full ml-1.5">
-                        <TextInput tag="state" label="State" required/>
+                        <TextInput value={address[2]} tag="state" label="State" required/>
                     </div>
                 </div>
-                <TextInput tag="zip" label="Zip Code" required/>
+                <TextInput value={address[3]} tag="zip" label="Zip Code" required/>
                 <hr class="mt-3"/>
 
                 <div class="flex justify-between mt-3">
