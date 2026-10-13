@@ -13,10 +13,10 @@
     } from "$lib/styles/styles";
     import { AlertDialog, Label, RadioGroup } from "bits-ui";
     import TextInput from "$lib/components/TextInput.svelte";
-    import { onMount } from "svelte";
+    import { enhance } from "$app/forms";
 
     let { data } = $props();
-    let address = $derived(data.user.address.split(','));
+    let address = $derived(data.user?.address.split(','));
     let tierDialog = $state(false);
     let showTierForm = $state(false);
     let selectedTier = $state("tier1");
@@ -34,10 +34,6 @@
         data.append('tier', selectedTier);
         fetch("?/updateTier", { method: "POST", body: data });
     }
-
-    onMount(() => {
-        console.log(data.user);
-    })
 </script>
 
 <!--Snippet for space-separated text with optional horizontal rule underneath-->
@@ -141,7 +137,13 @@
             {@render simple_data("Active Orders", data.user?.activeOrders, false)}
             {@render simple_data("Pending Orders", data.user?.pendingOrders, false)}
             {:else}
-            <form method="POST" action="?/updateInfo">
+            <form method="POST" action="?/updateInfo" use:enhance={() => {
+                return ({ result }) => {
+                    if (result.type === 'success') {
+                        console.log(result.data);
+                    }
+                }
+            }}>
                 <TextInput value={data.user?.business ?? ""} tag="businessName" label="Business Name" required/>
                 <TextInput value={data.user?.dba ?? ""} tag="dba" label="DBA" required={false}/>
                 <hr class="mt-3"/>
