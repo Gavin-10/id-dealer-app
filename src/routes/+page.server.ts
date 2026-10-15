@@ -1,12 +1,23 @@
 
 import type { Actions } from "@sveltejs/kit";
-import { authClient } from '$lib/client.ts';
 
 export const actions = {
-	updateInfo: async ({ request, fetch, url }) => {
+	updateInfo: async ({ request, fetch }) => {
 		const data = await request.formData();
-		const address = `${data.get('street')}, ${data.get('city')}, $${data.get('state')}, $${data.get('zip')}`;
-		const res = await fetch('/api/extauth/test');
+		const address = `${data.get('street')},${data.get('city')},${data.get('state')},${data.get('zip')}`;
+		const body = {
+			businessName: data.get('businessName'),
+			dba: data.get('dba'),
+			address: address,
+		};
+
+		const res = await fetch('/api/extauth/test', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		});
 		return await res.json();
 	},
 

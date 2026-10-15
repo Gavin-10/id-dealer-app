@@ -16,7 +16,7 @@
     import { enhance } from "$app/forms";
 
     let { data } = $props();
-    let address = $derived(data.user?.address.split(','));
+    let address = $state(data.user?.address.split(','));
     let tierDialog = $state(false);
     let showTierForm = $state(false);
     let selectedTier = $state("tier1");
@@ -140,8 +140,9 @@
             <form method="POST" action="?/updateInfo" use:enhance={() => {
                 return ({ result }) => {
                     if (result.type === 'success') {
-                        console.log(result.data);
+                        data.user = result.data ?? null;
                     }
+                    editInfo = false;
                 }
             }}>
                 <TextInput value={data.user?.business ?? ""} tag="businessName" label="Business Name" required/>

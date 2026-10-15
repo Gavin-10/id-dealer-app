@@ -7,6 +7,8 @@ export const fallback: RequestHandler = async ({ request, url }) => {
 	const api = new URL(url.pathname, PUBLIC_API_URL);
 	api.search = url.search;
 
+	console.log(request);
+
 	const headers = new Headers(request.headers);
 	headers.delete('host');
 
