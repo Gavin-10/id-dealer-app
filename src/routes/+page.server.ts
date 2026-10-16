@@ -1,5 +1,5 @@
 
-import type { Actions } from "@sveltejs/kit";
+import  { type Actions, fail } from "@sveltejs/kit";
 
 export const actions = {
 	updateInfo: async ({ request, fetch }) => {
@@ -11,14 +11,18 @@ export const actions = {
 			address: address,
 		};
 
-		const res = await fetch('/api/extauth/test', {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(body),
-		});
-		return await res.json();
+		try {
+			const res = await fetch('/api/extauth/test', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			});
+			return await res.json();
+		} catch (error) {
+			return fail(500, error);
+		}
 	},
 
 	updateTier: async ({ request }) => {

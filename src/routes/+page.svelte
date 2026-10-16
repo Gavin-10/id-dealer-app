@@ -13,15 +13,18 @@
     } from "$lib/styles/styles";
     import { AlertDialog, Label, RadioGroup } from "bits-ui";
     import TextInput from "$lib/components/TextInput.svelte";
+    import SubmissionDialog from "$lib/components/SubmissionDialog.svelte";
     import { enhance } from "$app/forms";
 
     let { data } = $props();
-    let address = $state(data.user?.address.split(','));
+    let address = $derived(data.user?.address.split(','));
     let tierDialog = $state(false);
     let showTierForm = $state(false);
     let selectedTier = $state("tier1");
 
     let editInfo = $state(false);
+    let showDialog = $state(false);
+    let formSuccess = $state(false);
 
     const openTierForm = () => {
         showTierForm = true;
@@ -110,6 +113,8 @@
     </AlertDialog.Portal>
 </AlertDialog.Root>
 
+<SubmissionDialog isOpen={showDialog} success={formSuccess}/>
+
 <img class="h-[225px] md:h-[550px] stage" src="/led_display.jpg" alt="Sample Display" />
 <div class="m-auto md:w-4/5 sm:w-full p-3">
     <h1 class="{largeTitle} mt-[-165px] mb-[90px] md:mt-[-330px] md:mb-[230px]">Welcome</h1>
@@ -141,8 +146,12 @@
                 return ({ result }) => {
                     if (result.type === 'success') {
                         data.user = result.data ?? null;
+                        formSuccess = true;
+                    } else {
+                        formSuccess = false;
                     }
                     editInfo = false;
+                    showDialog = true;
                 }
             }}>
                 <TextInput value={data.user?.business ?? ""} tag="businessName" label="Business Name" required/>
