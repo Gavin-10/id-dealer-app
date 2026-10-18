@@ -17,7 +17,7 @@
     import { enhance } from "$app/forms";
 
     let { data } = $props();
-    let address = $derived(data.user?.address.split(','));
+    let address = $derived(typeof(data.user?.address) === 'string' ? data.user?.address.split(',') : [undefined, undefined, undefined, undefined]);
     let tierDialog = $state(false);
     let tierFormSubmitted = $state(false);
     let selectedTier = $derived(data.user?.tier);
