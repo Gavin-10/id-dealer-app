@@ -9,7 +9,6 @@ export const fallback: RequestHandler = async ({ request, url }) => {
 
 	const headers = new Headers(request.headers);
 	headers.delete('host');
-
 	try {
 		const res = await fetch(api.toString(), {
 			method: request.method,

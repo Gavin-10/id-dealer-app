@@ -19,23 +19,21 @@
     let { data } = $props();
     let address = $derived(data.user?.address.split(','));
     let tierDialog = $state(false);
-    let showTierForm = $state(false);
-    let selectedTier = $state("tier1");
+    let tierFormSubmitted = $state(false);
+    let selectedTier = $derived(data.user?.tier);
 
     let editInfo = $state(false);
     let showDialog = $state(false);
     let formSuccess = $state(false);
 
-    const openTierForm = () => {
-        showTierForm = true;
-        tierDialog = true;
-    }
-
-    const submitTier = () => {
-        showTierForm = false;
+    const submitTier = async () => {
+        tierFormSubmitted = true;
         const data = new FormData();
         data.append('tier', selectedTier);
-        fetch("?/updateTier", { method: "POST", body: data });
+        const res = await fetch("?/updateTier", { method: "POST", body: data });
+        tierDialog = false;
+        formSuccess = res.status === 200;
+        showDialog = true;
     }
 </script>
 
@@ -68,13 +66,14 @@
     </div>
 {/snippet}
 
+<SubmissionDialog isOpen={showDialog} success={formSuccess}/>
+
 <AlertDialog.Root bind:open={tierDialog}>
     <AlertDialog.Portal>
         <AlertDialog.Overlay class=" bg-black/40 backdrop-blur-md fixed inset-0 z-50"/>
         <AlertDialog.Content class="{mediumGlass} shadow-lg p-4 w-[90%] md:w-[400px] border fixed left-[5%] md:left-[50%] md:translate-x-[-200px] top-[25%] z-50">
-            {#if showTierForm}
             <AlertDialog.Title class="text-center text-3xl font-medium">Select Tier</AlertDialog.Title>
-            <RadioGroup.Root bind:value={selectedTier} class="flex flex-col gap-4 mb-3">
+            <RadioGroup.Root value={selectedTier} class="flex flex-col gap-4 mb-3">
                 <div class="text-foreground group flex select-none items-center transition-all">
                     <RadioGroup.Item
                             value="tier1"
@@ -104,16 +103,13 @@
                     <Label.Root>Preferred Tier</Label.Root>
                 </div>
             </RadioGroup.Root>
-            <button onclick={submitTier} class="{transitionSizeLarge} w-full text-center">Submit Request</button>
-            {:else}
-            <AlertDialog.Title class="text-center text-3xl font-medium">Tier Requested</AlertDialog.Title>
-            <AlertDialog.Cancel class="{transitionSizeLarge} mt-8 w-full p-2 rounded-md text-lg">Dismiss</AlertDialog.Cancel>
-            {/if}
+            <div class="flex justify-between align-center mt-4">
+                <button onclick={submitTier} class="{transitionSizeLarge} text-center {tierFormSubmitted ? 'animate-bounce' : ''}">Request</button>
+                <AlertDialog.Cancel class="{transitionSizeLarge} text-center">Cancel</AlertDialog.Cancel>
+            </div>
         </AlertDialog.Content>
     </AlertDialog.Portal>
 </AlertDialog.Root>
-
-<SubmissionDialog isOpen={showDialog} success={formSuccess}/>
 
 <img class="h-[225px] md:h-[550px] stage" src="/led_display.jpg" alt="Sample Display" />
 <div class="m-auto md:w-4/5 sm:w-full p-3">
@@ -126,11 +122,12 @@
         <div class="w-full p-3 gradient rounded-md mr-0 md:mr-3">
             <div class="flex justify-between items-center">
                 <h3 class="font-semibold text-2xl inline">{data.user?.tier} Dealer</h3>
-                <button onclick={openTierForm} class="{flatGlassButton} backdrop-hue-rotate-30">Change Tier</button>
+                <button onclick={() => tierDialog = true} class="{flatGlassButton} backdrop-hue-rotate-30">Change Tier</button>
             </div>
             <hr class="my-3"/>
 
             {#if !editInfo}
+            {@render simple_data("Name", data.user?.name, true)}
             {@render simple_data("Business Name", data.user?.business, false)}
             {@render simple_data("DBA", data.user?.dba, true)}
 
@@ -154,6 +151,7 @@
                     showDialog = true;
                 }
             }}>
+                <TextInput value={data.user?.name ?? ""} tag="name" label="Name" required/>
                 <TextInput value={data.user?.business ?? ""} tag="businessName" label="Business Name" required/>
                 <TextInput value={data.user?.dba ?? ""} tag="dba" label="DBA" required={false}/>
                 <hr class="mt-3"/>
