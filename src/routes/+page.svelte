@@ -15,7 +15,6 @@
     import TextInput from "$lib/components/TextInput.svelte";
     import SubmissionDialog from "$lib/components/SubmissionDialog.svelte";
     import { enhance } from "$app/forms";
-    import { onMount } from "svelte";
 
     let { data } = $props();
     let address = $derived(typeof(data.user?.address) === 'string' ? data.user?.address.split(',') : [undefined, undefined, undefined, undefined]);
@@ -32,13 +31,11 @@
         const data = new FormData();
         data.append('tier', selectedTier);
         const res = await fetch("?/updateTier", { method: "POST", body: data });
+        tierFormSubmitted = false;
         tierDialog = false;
         formSuccess = res.status === 200;
         showDialog = true;
     }
-    onMount(() => {
-        console.log(data);
-    });
 </script>
 
 <!--Snippet for space-separated text with optional horizontal rule underneath-->
@@ -70,7 +67,7 @@
     </div>
 {/snippet}
 
-<SubmissionDialog isOpen={showDialog} success={formSuccess}/>
+<SubmissionDialog bind:isOpen={showDialog} success={formSuccess}/>
 
 <AlertDialog.Root bind:open={tierDialog}>
     <AlertDialog.Portal>
