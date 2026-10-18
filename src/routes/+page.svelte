@@ -15,6 +15,7 @@
     import TextInput from "$lib/components/TextInput.svelte";
     import SubmissionDialog from "$lib/components/SubmissionDialog.svelte";
     import { enhance } from "$app/forms";
+    import { onMount } from "svelte";
 
     let { data } = $props();
     let address = $derived(typeof(data.user?.address) === 'string' ? data.user?.address.split(',') : [undefined, undefined, undefined, undefined]);
@@ -35,6 +36,9 @@
         formSuccess = res.status === 200;
         showDialog = true;
     }
+    onMount(() => {
+        console.log(data);
+    });
 </script>
 
 <!--Snippet for space-separated text with optional horizontal rule underneath-->
