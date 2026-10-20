@@ -28,13 +28,14 @@
 
     const submitTier = async () => {
         tierFormSubmitted = true;
-        const data = new FormData();
-        data.append('tier', selectedTier);
-        const res = await fetch("?/updateTier", { method: "POST", body: data });
+        const submission = new FormData();
+        submission.append('tier', selectedTier);
+        const res = await fetch("?/updateTier", { method: "POST", body: submission });
         tierFormSubmitted = false;
         tierDialog = false;
-        formSuccess = res.status === 200;
+        formSuccess = (await res.json()).type === 'success';
         showDialog = true;
+        selectedTier = data.user?.tier;
     }
 </script>
 
@@ -74,7 +75,7 @@
         <AlertDialog.Overlay class=" bg-black/40 backdrop-blur-md fixed inset-0 z-50"/>
         <AlertDialog.Content class="{mediumGlass} shadow-lg p-4 w-[90%] md:w-[400px] border fixed left-[5%] md:left-[50%] md:translate-x-[-200px] top-[25%] z-50">
             <AlertDialog.Title class="text-center text-3xl font-medium">Select Tier</AlertDialog.Title>
-            <RadioGroup.Root value={selectedTier} class="flex flex-col gap-4 mb-3">
+            <RadioGroup.Root bind:value={selectedTier} class="flex flex-col gap-4 mb-3">
                 <div class="text-foreground group flex select-none items-center transition-all">
                     <RadioGroup.Item
                             value="tier1"

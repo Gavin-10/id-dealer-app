@@ -40,7 +40,7 @@ export const actions = {
 				},
 				body: JSON.stringify(body),
 			});
-			return { status: 200 };
+			return;
 		} catch (error) {
 			return fail(500, error);
 		}
