@@ -11,16 +11,17 @@
     import SubmissionDialog from "$lib/components/SubmissionDialog.svelte";
     import { Label } from 'bits-ui';
 
-    let { form } = $props();
+    let { data } = $props();
 
-    let isOpen = $derived(form !== undefined && form !== null);
+    let isOpen = $state(false);
+    let formSuccess = $state(false);
 
     const copyEmail = () => {
         navigator.clipboard.writeText("info@imagine-displays.com");
     }
 </script>
 
-<SubmissionDialog bind:isOpen={isOpen} success={form?.status === 200}/>
+<SubmissionDialog bind:isOpen={isOpen} success={formSuccess}/>
 <div class="h-[300px]">
     <img class="w-full h-[300px] z-0" src="/dots2.jpg" alt="Contact Us Background" />
     <h1 class="{largeTitle} mt-[-200px] mb-3">Connect With Us</h1>
@@ -29,15 +30,26 @@
 <div class="{container}">
     <div class="bg-(--site-background) relative z-5 backdrop-blur-md rounded-2xl flex flex-col md:flex-row justify-between align-stretch">
         <!--Contact form-->
-        <form method="POST" use:enhance class="w-full md:mr-3">
+        <form method="POST" class="w-full md:mr-3" use:enhance={() => {
+            return async ({ result, update }) => {
+                await update({ reset: true });
+                if (result.type === 'success') {
+                    data.user = result.data ?? null;
+                    formSuccess = true;
+                } else {
+                    formSuccess = false;
+                }
+                isOpen = true;
+            }
+        }}>
             <div>
                 <Label.Root for="name" class="m-0 p-0 text-sm font-medium">Name</Label.Root>
-                <input required id="name" name="name" class="h-[50px] bg-transparent rounded-md w-full ring-0 outline-0 border border-gray-500 transition-colors duration-300 ease-in-out focus:border-(--site-blue)"/>
+                <input required value={data.user?.name} id="name" name="name" class="h-[50px] bg-transparent rounded-md w-full ring-0 outline-0 border border-gray-500 transition-colors duration-300 ease-in-out focus:border-(--site-blue)"/>
             </div>
 
             <div class="mt-3">
                 <Label.Root for="email" class="m-0 p-0 text-sm font-medium">Email</Label.Root>
-                <input required type="email" id="email" name="email" class="h-[50px] bg-transparent rounded-md w-full ring-0 outline-0 border border-gray-500 transition-colors duration-300 ease-in-out focus:border-(--site-blue)"/>
+                <input required value={data.user?.email} type="email" id="email" name="email" class="h-[50px] bg-transparent rounded-md w-full ring-0 outline-0 border border-gray-500 transition-colors duration-300 ease-in-out focus:border-(--site-blue)"/>
             </div>
 
             <div class="mt-3">
