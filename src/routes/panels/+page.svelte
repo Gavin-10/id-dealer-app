@@ -3,7 +3,7 @@
     import {
         flatGlassButton,
         glassMenu,
-        glassMenuItem,
+        glassMenuItem, largeTitle,
         mediumAccentGlassButton,
         medTitle,
     } from "$lib/styles/styles.ts";
@@ -19,22 +19,30 @@
     let selectedMarket = $derived(data.search.market ?? "All Markets");
     let searchVal = $state("");
 
+    // svelte-ignore state_referenced_locally
     let resFinal = data.res;
     let resDyn = $state<Series[]>(resFinal);
 
     const groups = ["All Groups", "Indoor", "Outdoor"];
     const markets = ["All Markets", "Commercial", "Education", "Government", "House of Worship", "Residential", "Visitor Experience", "Virtual Production/Cinema"];
-    const titles = ["title 1", "title 2", "title 3", "title 4"];
 
     //Search products with user search params
     const search = () => {
+        resDyn = resFinal;
+
         const search = {
             value: searchVal,
-            market: selectedMarket,
-            group: selectedGroup,
+            market: selectedMarket === "All Markets" ? null : selectedMarket,
+            group: selectedGroup === "All Groups" ? null : selectedGroup,
         };
 
-        console.log(search);
+        resDyn = resDyn.filter(s => s.seriesModel.toLocaleLowerCase().includes(search.value.toLocaleLowerCase()));
+        if (search.market) resDyn = resDyn.filter(s => {
+            for (const app of s.applications) {
+                if (app.application === search.market) return true;
+            }
+        });
+        if (search.group) resDyn = resDyn.filter(s => s.group.group === search.group);
     }
 
     //Resets search form and clears results of search
@@ -138,6 +146,9 @@
                     <p>{series.shortDescription}</p>
                 </Card>
             </div>
+        {:else}
+            <span class="{medTitle} m-auto my-7">No Panels Available</span>
+            <div class="h-screen"></div>
         {/each}
     </div>
 </div>
