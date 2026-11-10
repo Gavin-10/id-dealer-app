@@ -9,6 +9,8 @@
     let { data } = $props();
     let descriptions = $derived(data.panelData.description.filter(d => !d.isVerticalMarket));
     let markets = $derived(data.panelData.description.filter(d => d.isVerticalMarket));
+    let activeProducts = $derived(data.panelData.products.filter(p => p.status.status === "Active"));
+    let otherProducts = $derived(data.panelData.products.filter(p => p.status.status !== "Active"));
 
     //Future adjustment: mt-[-116px]
 </script>
@@ -63,17 +65,27 @@
             {@render market(mark.title.title, mark.text)}
         {/each}
     </div>
-
-    <h2 class="mt-6 {medTitle}">Available Panels:</h2>
 </div>
 
 <!--Series product cards-->
-<div class="bg-dots">
-    <div class="flex flex-wrap align-stretch m-auto md:w-4/5 sm:w-full py-3">
-        {#each data.panelData.products as prod (prod.partNumber)}
-            {@render product(prod, data.panelData.costCalculation)}
-        {/each}
-    </div>
+<div class="bg-dots py-5">
+    {#if activeProducts.length > 0}
+        <h2 class="mt-6 {medTitle}">Available Panels:</h2>
+        <div class="flex flex-wrap align-stretch m-auto md:w-4/5 sm:w-full py-3">
+            {#each activeProducts as prod (prod.partNumber)}
+                {@render product(prod, data.panelData.costCalculation)}
+            {/each}
+        </div>
+    {/if}
+
+    {#if otherProducts.length > 0}
+        <h2 class="mt-6 {medTitle}">Legacy Panels:</h2>
+        <div class="flex flex-wrap align-stretch m-auto md:w-4/5 sm:w-full py-3">
+            {#each otherProducts as prod (prod.partNumber)}
+                {@render product(prod, data.panelData.costCalculation)}
+            {/each}
+        </div>
+    {/if}
 </div>
 
 <style>

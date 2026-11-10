@@ -139,7 +139,7 @@
     </div>
 
     <!--Panel grid list-->
-    <div class="mt-5 flex flex-wrap justify-between items-stretch">
+    <div class="mt-5 flex flex-wrap items-stretch">
         {#each resDyn as series, index (index)}
             <div class="w-full h-auto md:w-1/2 lg:w-1/3 mb-3 {getClasses(index)}">
                 <Card title={series.seriesModel} subtitle="{series._count.products} panels in this series!" src={series.photo} alt={series.seriesModel} to="/panels/{series.seriesModel}">

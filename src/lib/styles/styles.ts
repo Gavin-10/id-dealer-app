@@ -21,7 +21,9 @@ const mediumGlassBase = `rounded-md backdrop-blur-md border border-gray-500/40 b
 export const mediumGlass = `${mediumGlassBase} glare`;
 export const mediumGlassButton = `${mediumGlass} ${transitionSizeLarge} hover:cursor-pointer px-5 py-3 rounded-md`;
 export const mediumAccentGlass = `rounded-md backdrop-blur-md border border-cyan-300/15 border-b-cyan-500/30 shadow-lg shadow-cyan-500/20 accent-glare`;
-export const mediumAccentGlassButton = `${mediumAccentGlass} ${transitionSizeLarge} shadow- shadow-cyan-500 text-cyan-500 hover:cursor-pointer px-5 py-3 rounded-md`;
+export const mediumAccentDisabledGlass = `rounded-md backdrop-blur-md border border-gray-300/15 border-b-gray-500/30 shadow-lg shadow-gray-500/20 accent-glare`;
+export const mediumAccentGlassButton = `${mediumAccentGlass} ${transitionSizeLarge} shadow shadow-cyan-500 text-cyan-500 hover:cursor-pointer px-5 py-3 rounded-md`;
+export const mediumAccentDisabledGlassButton = `${mediumAccentDisabledGlass} text-gray-500 hover:cursor-not-allowed px-5 py-3 rounded-md`;
 
 export const container = 'm-auto md:w-4/5 sm:w-full p-3';
 

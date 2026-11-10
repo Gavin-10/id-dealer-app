@@ -1,7 +1,7 @@
 
 <script lang="ts">
 
-    import {mediumAccentGlassButton, smallTitle} from "$lib/styles/styles.ts";
+    import {mediumAccentGlassButton, smallTitle, mediumAccentDisabledGlassButton} from "$lib/styles/styles.ts";
 
     import { Download } from "@lucide/svelte";
     import { SvelteMap } from 'svelte/reactivity';
@@ -108,7 +108,7 @@
     {/each}
 
     <div class="flex justify-end mt-3">
-        <button class="{mediumAccentGlassButton} flex justify-between w-40" onclick={async () => await downloadSpecSheet()} disabled={!product.hasSpecSheet}>
+        <button class="{product.hasSpecSheet ? mediumAccentGlassButton : mediumAccentDisabledGlassButton} flex justify-between w-40" onclick={async () => await downloadSpecSheet()} disabled={!product.hasSpecSheet}>
             Download
             <Download />
         </button>
