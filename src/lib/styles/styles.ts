@@ -14,7 +14,7 @@ export const smallTitle = 'font-normal text-4xl';
 export const medTitle = 'text-center text-6xl font-semibold';
 export const largeTitle = 'text-center text-7xl md:text-9xl font-semibold';
 
-export const glassMenu = `rounded-md ${darkRoundedGlass} py-3 min-w-3xs`;
+export const glassMenu = `rounded-md ${darkRoundedGlass} py-3 min-w-3xs max-h-[600px] overflow-y-scroll`;
 export const glassMenuItem = `p-3 transition duration-200 ease-in hover:bg-black/50 hover:cursor-pointer`;
 
 const mediumGlassBase = `rounded-md backdrop-blur-md border border-gray-500/40 border-b-gray-300/40`;

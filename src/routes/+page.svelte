@@ -15,6 +15,7 @@
     import TextInput from "$lib/components/TextInput.svelte";
     import SubmissionDialog from "$lib/components/SubmissionDialog.svelte";
     import { enhance } from "$app/forms";
+    import SelectInput from "$lib/components/SelectInput.svelte";
 
     let { data } = $props();
     let address = $derived(typeof(data.user?.address) === 'string' ? data.user?.address.split(',') : [undefined, undefined, undefined, undefined]);
@@ -25,6 +26,14 @@
     let editInfo = $state(false);
     let showDialog = $state(false);
     let formSuccess = $state(false);
+
+    const US_STATES = [
+        "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+        "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+        "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+        "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+        "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
+    ];
 
     const submitTier = async () => {
         tierFormSubmitted = true;
@@ -145,6 +154,7 @@
                 return ({ result }) => {
                     if (result.type === 'success') {
                         data.user = result.data ?? null;
+                        address = typeof(result.data?.address) === 'string' ? result.data?.address.split(',') : [undefined, undefined, undefined, undefined];
                         formSuccess = true;
                     } else {
                         formSuccess = false;
@@ -164,11 +174,14 @@
                         <TextInput value={address[1]} tag="city" label="City" required/>
                     </div>
                     <div class="w-full ml-1.5">
-                        <TextInput value={address[2]} tag="state" label="State" required/>
+                        <SelectInput selectedOption={address[2]} options={US_STATES} defaultVal="Select State" tag="state" label="State" required/>
                     </div>
                 </div>
                 <TextInput value={address[3]} tag="zip" label="Zip Code" required/>
                 <hr class="mt-3"/>
+                <div class="pt-3">
+                    <a class="hover:cursor-pointer transition-colors hover:text-gray-800" href={resolve('/change-password')}>Change Password</a>
+                </div>
 
                 <div class="flex justify-between mt-3">
                     <button type="submit" class="{flatGlassButton}">Update</button>
@@ -188,7 +201,7 @@
                 <Headset size="64"/>
             </a>
             <button onclick={() => editInfo = true} class="{mediumGlass} h-full mt-3 flex items-center justify-between font-normal text-left text-4xl py-5 px-12 hover:cursor-pointer {transitionSizeSmall}">
-                Edit Information
+                Edit Account
                 <Pencil size="64"/>
             </button>
         </div>

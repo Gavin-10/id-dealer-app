@@ -12,6 +12,8 @@
     import { ChevronDown } from "@lucide/svelte";
     import {onMount} from "svelte";
     import type { Series } from "$lib/model/ledPanels.ts"
+    import SelectInput from "$lib/components/SelectInput.svelte";
+    import TextInput from "$lib/components/TextInput.svelte";
 
     let { data } = $props();
 
@@ -83,56 +85,13 @@
     <!--Panel search form-->
     <div class="flex flex-col md:flex-row justify-between md:items-end mt-5">
         <div class="w-full mr-3">
-            <Label.Root for="search" class="m-0 p-0 text-sm font-medium">Search</Label.Root>
-            <input bind:value={searchVal} id="search" class="h-[50px] bg-transparent rounded-md w-full ring-0 outline-0 border border-gray-500 transition-colors duration-300 ease-in-out focus:border-(--site-blue)"/>
+            <TextInput label="Search" bind:value={searchVal} tag="search" color="blue" large/>
         </div>
         <div class="w-full md:w-100 mr-3">
-            <Label.Root for="application" class="m-0 p-0 text-sm font-medium">Application</Label.Root>
-            <Select.Root type="single" bind:value={selectedMarket} onValueChange={v => selectedMarket = v}>
-                <Select.Trigger class="w-full h-[50px] flex justify-between items-center px-3 border border-gray-500 rounded-md hover:cursor-pointer transition-colors duration-300 ease-in-out focus:border-(--site-red)">
-                    <Select.Value placeholder="All Groups" />
-                    <ChevronDown />
-                </Select.Trigger>
-                <Select.Portal>
-                    <Select.Content class={glassMenu} sideOffset={12}>
-                        <Select.Viewport>
-                            {#each markets as market (market)}
-                                <Select.Item
-                                        class={glassMenuItem}
-                                        value={market}
-                                        label={market}
-                                >
-                                    {market}
-                                </Select.Item>
-                            {/each}
-                        </Select.Viewport>
-                    </Select.Content>
-                </Select.Portal>
-            </Select.Root>
+            <SelectInput tag="market" label="Market" defaultVal="All Markets" bind:selectedOption={selectedMarket} options={markets} large/>
         </div>
         <div class="w-full md:w-100 mr-3">
-            <Label.Root for="group" class="m-0 p-0 text-sm font-medium">Group</Label.Root>
-            <Select.Root type="single" bind:value={selectedGroup} onValueChange={v => selectedGroup = v}>
-                <Select.Trigger class="w-full h-[50px] flex justify-between items-center px-3 border border-gray-500 rounded-md hover:cursor-pointer transition-colors duration-300 ease-in-out focus:border-(--site-red)">
-                    <Select.Value placeholder="All Groups" />
-                    <ChevronDown />
-                </Select.Trigger>
-                <Select.Portal>
-                    <Select.Content class={glassMenu} sideOffset={12}>
-                        <Select.Viewport>
-                            {#each groups as group (group)}
-                                <Select.Item
-                                        class={glassMenuItem}
-                                        value={group}
-                                        label={group}
-                                >
-                                    {group}
-                                </Select.Item>
-                            {/each}
-                        </Select.Viewport>
-                    </Select.Content>
-                </Select.Portal>
-            </Select.Root>
+            <SelectInput tag="group" label="Group" defaultVal="All Groups" bind:selectedOption={selectedGroup} options={groups} large/>
         </div>
         <button class="h-[50px] {mediumAccentGlassButton} my-4 md:my-0 md:mr-3 p-0" onclick={search}>Search</button>
         <button class="h-[50px] {flatGlassButton}" onclick={clear}>Clear</button>
